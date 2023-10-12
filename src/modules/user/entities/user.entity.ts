@@ -6,8 +6,8 @@ import {
   JoinColumn,
   OneToOne,
 } from "typeorm";
-import Base from "../../../db/config/base.entity";
-import Designation from "../../system/entities/designation.entity";
+import Base from "../../../db/config/base.entity.js";
+import Designation from "../../system/entities/designation.entity.js";
 
 @Entity("users")
 export default class Users extends Base {

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Designation from "../../system/entities/designation.entity";
-import Users from "../entities/user.entity";
+import Designation from "../../system/entities/designation.entity.js";
+import Users from "../entities/user.entity.js";
 import { BaseController } from "../../../utils/baseController.js";
 
 const designationRepo = Designation;
