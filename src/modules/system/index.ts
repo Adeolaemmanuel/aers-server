@@ -2,13 +2,13 @@ import express from "express";
 import {
   createDesignationValidator,
   createStageValidator,
-} from "./controller/validators.js";
+} from "./controller/validators";
 import {
   createDesignation,
   createStage,
   getAllDesignation,
   getAllStage,
-} from "./controller/v1.controller.js";
+} from "./controller/v1.controller";
 
 const systemRouterV1 = express.Router();
 
