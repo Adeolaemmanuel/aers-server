@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const base_entity_js_1 = __importDefault(require("../../../db/config/base.entity.js"));
-const questions_entity_js_1 = __importDefault(require("../../questions/entities/questions.entity.js"));
-let Stages = class Stages extends base_entity_js_1.default {
+const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
+const questions_entity_1 = __importDefault(require("../../questions/entities/questions.entity"));
+let Stages = class Stages extends base_entity_1.default {
 };
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
@@ -26,8 +26,8 @@ __decorate([
     __metadata("design:type", String)
 ], Stages.prototype, "slug", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => questions_entity_js_1.default, (que) => que.question),
-    __metadata("design:type", questions_entity_js_1.default)
+    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.question),
+    __metadata("design:type", questions_entity_1.default)
 ], Stages.prototype, "question", void 0);
 Stages = __decorate([
     (0, typeorm_1.Entity)("stages")

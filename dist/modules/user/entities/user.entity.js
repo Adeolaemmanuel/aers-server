@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const base_entity_js_1 = __importDefault(require("../../../db/config/base.entity.js"));
-const designation_entity_js_1 = __importDefault(require("../../system/entities/designation.entity.js"));
-let Users = class Users extends base_entity_js_1.default {
+const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
+const designation_entity_1 = __importDefault(require("../../system/entities/designation.entity"));
+let Users = class Users extends base_entity_1.default {
 };
 __decorate([
     (0, typeorm_1.Index)("user_id"),
@@ -42,9 +42,9 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "phone_number", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => designation_entity_js_1.default),
+    (0, typeorm_1.OneToOne)(() => designation_entity_1.default),
     (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", designation_entity_js_1.default)
+    __metadata("design:type", designation_entity_1.default)
 ], Users.prototype, "designation", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "boolean" }),

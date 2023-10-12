@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const base_entity_js_1 = __importDefault(require("../../../db/config/base.entity.js"));
-let Designation = class Designation extends base_entity_js_1.default {
+const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
+let Designation = class Designation extends base_entity_1.default {
 };
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
