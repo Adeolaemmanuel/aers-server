@@ -1,6 +1,6 @@
 import { Column, Entity, Generated, Index, OneToMany } from "typeorm";
-import Base from "../../../db/config/base.entity";
-import Questions from "../../questions/entities/questions.entity";
+import Base from "../../../db/config/base.entity.js";
+import Questions from "../../questions/entities/questions.entity.js";
 
 @Entity("stages")
 export default class Stages extends Base {

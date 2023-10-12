@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
-const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
-const answers_entity_1 = __importDefault(require("./answers.entity"));
-let Questions = class Questions extends base_entity_1.default {
+const base_entity_js_1 = __importDefault(require("../../../db/config/base.entity.js"));
+const stages_entity_js_1 = __importDefault(require("../../system/entities/stages.entity.js"));
+const answers_entity_js_1 = __importDefault(require("./answers.entity.js"));
+let Questions = class Questions extends base_entity_js_1.default {
 };
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
@@ -31,11 +31,11 @@ __decorate([
     __metadata("design:type", Object)
 ], Questions.prototype, "options", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => stages_entity_1.default, (sta) => sta.question),
-    __metadata("design:type", stages_entity_1.default)
+    (0, typeorm_1.ManyToOne)(() => stages_entity_js_1.default, (sta) => sta.question),
+    __metadata("design:type", stages_entity_js_1.default)
 ], Questions.prototype, "stage", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (ans) => ans.question),
+    (0, typeorm_1.OneToMany)(() => answers_entity_js_1.default, (ans) => ans.question),
     __metadata("design:type", Array)
 ], Questions.prototype, "answer", void 0);
 Questions = __decorate([

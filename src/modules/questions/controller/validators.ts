@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { BaseController } from "../../../utils/baseController";
-import { customValidator } from "../../../utils/utils";
+import { BaseController } from "../../../utils/baseController.js";
+import { customValidator } from "../../../utils/utils.js";
 
 export const createQuestionValidator = (
   req: Request,

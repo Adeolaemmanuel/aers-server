@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import Designation from "../../system/entities/designation.entity";
-import { BaseController } from "../../../utils/baseController";
-import Users from "../entities/user.entity";
-import { emit } from "process";
+import Designation from "../../system/entities/designation.entity.js";
+import { BaseController } from "../../../utils/baseController.js";
+import Users from "../entities/user.entity.js";
 
 const designationRepo = Designation;
 const userRepo = Users;
@@ -49,7 +48,7 @@ export async function updateUser(req: Request, res: Response) {
     where: { id: payload.designation_id },
   });
 
-const updated = await  userRepo.save(user);
+  const updated = await userRepo.save(user);
 
   BaseController.ok(res, {
     data: updated,

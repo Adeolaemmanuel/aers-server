@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUserValidator = exports.createDesignationValidator = exports.createStageValidator = void 0;
-const utils_1 = require("../../../utils/utils");
-const baseController_1 = require("../../../utils/baseController");
+const utils_js_1 = require("../../../utils/utils.js");
+const baseController_js_1 = require("../../../utils/baseController.js");
 const createStageValidator = (req, res, next) => {
     const payload = {
         name: undefined,
         slug: undefined,
     };
-    const valid = (0, utils_1.customValidator)(payload, req);
+    const valid = (0, utils_js_1.customValidator)(payload, req);
     if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
         return handleError(valid, res);
     }
@@ -20,7 +20,7 @@ const createDesignationValidator = (req, res, next) => {
         name: undefined,
         slug: undefined,
     };
-    const valid = (0, utils_1.customValidator)(payload, req);
+    const valid = (0, utils_js_1.customValidator)(payload, req);
     if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
         return handleError(valid, res);
     }
@@ -35,7 +35,7 @@ const createUserValidator = (req, res, next) => {
         designation_id: undefined,
         phone_number: undefined,
     };
-    const valid = (0, utils_1.customValidator)(payload, req);
+    const valid = (0, utils_js_1.customValidator)(payload, req);
     if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
         return handleError(valid, res);
     }
@@ -43,7 +43,7 @@ const createUserValidator = (req, res, next) => {
 };
 exports.createUserValidator = createUserValidator;
 function handleError(valid, res) {
-    return baseController_1.BaseController.clientError(res, {
+    return baseController_js_1.BaseController.clientError(res, {
         error: `${valid.replace("_", " ")} is required`,
         key: valid,
     });

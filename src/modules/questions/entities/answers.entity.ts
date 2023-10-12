@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from "typeorm";
-import Questions from "./questions.entity";
-import Base from "../../../db/config/base.entity";
+import Questions from "./questions.entity.js";
+import Base from "../../../db/config/base.entity.js";
 
 @Entity("answers")
 export default class Answers extends Base {

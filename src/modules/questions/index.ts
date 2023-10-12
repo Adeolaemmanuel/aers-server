@@ -3,8 +3,8 @@ import {
   createQuestion,
   getAllQuestions,
   insertAnswers,
-} from "./controller/v1.controller";
-import { createQuestionValidator } from "./controller/validators";
+} from "./controller/v1.controller.js";
+import { createQuestionValidator } from "./controller/validators.js";
 
 const questionV1 = express.Router();
 

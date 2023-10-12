@@ -13,33 +13,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.insertAnswers = exports.getAllQuestions = exports.createQuestion = void 0;
-const questions_entity_1 = __importDefault(require("../entities/questions.entity"));
-const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
-const baseController_1 = require("../../../utils/baseController");
-const answers_entity_1 = __importDefault(require("../entities/answers.entity"));
-const user_entity_1 = __importDefault(require("../../user/entities/user.entity"));
-const questionRepo = questions_entity_1.default;
-const stagesRepo = stages_entity_1.default;
-const answerRepo = answers_entity_1.default;
-const userRepo = user_entity_1.default;
+const questions_entity_js_1 = __importDefault(require("../entities/questions.entity.js"));
+const stages_entity_js_1 = __importDefault(require("../../system/entities/stages.entity.js"));
+const baseController_js_1 = require("../../../utils/baseController.js");
+const answers_entity_js_1 = __importDefault(require("../entities/answers.entity.js"));
+const user_entity_js_1 = __importDefault(require("../../user/entities/user.entity.js"));
+const questionRepo = questions_entity_js_1.default;
+const stagesRepo = stages_entity_js_1.default;
+const answerRepo = answers_entity_js_1.default;
+const userRepo = user_entity_js_1.default;
 function createQuestion(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = req.body;
         const stage = yield stagesRepo.findOne({ where: { id: payload.stage_id } });
         if (!stage) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to getting stage",
                 status: false,
             });
         }
         const question = yield questionRepo.insert(Object.assign({ stage }, payload));
         if (!question) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to inserting question",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             message: "Question created successfully",
             status: true,
             data: question.raw,
@@ -58,12 +58,12 @@ function getAllQuestions(req, res) {
             },
         });
         if (!resp) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to getting question",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             message: "Question created successfully",
             status: true,
             data: resp,
@@ -98,12 +98,12 @@ function insertAnswers(req, res) {
         const answer = yield answerRepo.create(answers);
         const saved = yield answerRepo.insert(answer);
         if (!saved) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to getting answer",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             message: "Answer was submitted successfully",
             status: true,
             data: saved,

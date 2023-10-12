@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createQuestionValidator = void 0;
-const baseController_1 = require("../../../utils/baseController");
-const utils_1 = require("../../../utils/utils");
+const baseController_js_1 = require("../../../utils/baseController.js");
+const utils_js_1 = require("../../../utils/utils.js");
 const createQuestionValidator = (req, res, next) => {
     const payload = {
         input_type: undefined,
         question: undefined,
         stage_id: undefined,
     };
-    const valid = (0, utils_1.customValidator)(payload, req);
+    const valid = (0, utils_js_1.customValidator)(payload, req);
     if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
         return handleError(valid, res);
     }
@@ -17,7 +17,7 @@ const createQuestionValidator = (req, res, next) => {
 };
 exports.createQuestionValidator = createQuestionValidator;
 function handleError(valid, res) {
-    return baseController_1.BaseController.clientError(res, {
+    return baseController_js_1.BaseController.clientError(res, {
         error: `${valid.replace("_", " ")} is required`,
         key: valid,
     });

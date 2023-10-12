@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { customValidator } from "../../../utils/utils";
-import { createStageDto } from "../dto/stage.dto";
-import { createDesignationDto } from "../dto/designation.dto";
-import { BaseController } from "../../../utils/baseController";
+import { customValidator } from "../../../utils/utils.js";
+import { createStageDto } from "../dto/stage.dto.js";
+import { createDesignationDto } from "../dto/designation.dto.js";
+import { BaseController } from "../../../utils/baseController.js";
 
 export const createStageValidator = (
   req: Request,

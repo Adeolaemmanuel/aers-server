@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const questions_entity_1 = __importDefault(require("./questions.entity"));
-const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
-let Answers = class Answers extends base_entity_1.default {
+const questions_entity_js_1 = __importDefault(require("./questions.entity.js"));
+const base_entity_js_1 = __importDefault(require("../../../db/config/base.entity.js"));
+let Answers = class Answers extends base_entity_js_1.default {
 };
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
@@ -30,8 +30,8 @@ __decorate([
     __metadata("design:type", Object)
 ], Answers.prototype, "values", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.question),
-    __metadata("design:type", questions_entity_1.default)
+    (0, typeorm_1.ManyToOne)(() => questions_entity_js_1.default, (que) => que.question),
+    __metadata("design:type", questions_entity_js_1.default)
 ], Answers.prototype, "question", void 0);
 Answers = __decorate([
     (0, typeorm_1.Entity)("answers")

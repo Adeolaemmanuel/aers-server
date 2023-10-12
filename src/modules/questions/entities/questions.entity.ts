@@ -6,9 +6,9 @@ import {
   OneToMany,
   OneToOne,
 } from "typeorm";
-import Base from "../../../db/config/base.entity";
-import Stages from "../../system/entities/stages.entity";
-import Answers from "./answers.entity";
+import Base from "../../../db/config/base.entity.js";
+import Stages from "../../system/entities/stages.entity.js";
+import Answers from "./answers.entity.js";
 
 @Entity("questions")
 export default class Questions extends Base {

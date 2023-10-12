@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import Designation from "../entities/designation.entity";
-import Stages from "../entities/stages.entity";
-import { BaseController } from "../../../utils/baseController";
-import { createStageDto } from "../dto/stage.dto";
-import { createDesignationDto } from "../dto/designation.dto";
+import Designation from "../entities/designation.entity.js";
+import Stages from "../entities/stages.entity.js";
+import { BaseController } from "../../../utils/baseController.js";
+import { createStageDto } from "../dto/stage.dto.js";
+import { createDesignationDto } from "../dto/designation.dto.js";
 
 const stageRepo = Stages;
 const designationRepo = Designation;

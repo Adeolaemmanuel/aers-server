@@ -2,8 +2,8 @@ import express from "express";
 import "reflect-metadata";
 import cors from "cors";
 import userRouterV1 from "./modules/user";
-import { dataSource } from "./db/db";
-import { PORT } from "./utils/settings";
+import { dataSource } from "./db/db.js";
+import { PORT } from "./utils/settings.js";
 import systemRouterV1 from "./modules/system";
 import questionV1 from "./modules/questions";
 

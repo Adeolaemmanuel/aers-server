@@ -13,22 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllDesignation = exports.createDesignation = exports.getAllStage = exports.createStage = void 0;
-const designation_entity_1 = __importDefault(require("../entities/designation.entity"));
-const stages_entity_1 = __importDefault(require("../entities/stages.entity"));
-const baseController_1 = require("../../../utils/baseController");
-const stageRepo = stages_entity_1.default;
-const designationRepo = designation_entity_1.default;
+const designation_entity_js_1 = __importDefault(require("../entities/designation.entity.js"));
+const stages_entity_js_1 = __importDefault(require("../entities/stages.entity.js"));
+const baseController_js_1 = require("../../../utils/baseController.js");
+const stageRepo = stages_entity_js_1.default;
+const designationRepo = designation_entity_js_1.default;
 function createStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = req.body;
         const stages = yield stageRepo.insert(Object.assign({}, payload));
         if (!stages) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to insert stages",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             data: stages.raw,
             message: "Stages inserted successfully",
             status: true,
@@ -40,12 +40,12 @@ function getAllStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const stages = yield stageRepo.find();
         if (!stages) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to get stages",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             data: stages,
             message: "Stages fetched successfully",
             status: true,
@@ -58,12 +58,12 @@ function createDesignation(req, res) {
         const payload = req.body;
         const designation = yield designationRepo.insert(Object.assign({}, payload));
         if (!designation) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to insert designation",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             data: designation.raw,
             message: "Designation inserted successfully",
             status: true,
@@ -75,12 +75,12 @@ function getAllDesignation(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const designation = yield designationRepo.find();
         if (!designation) {
-            return baseController_1.BaseController.clientError(res, {
+            return baseController_js_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to get designation",
                 status: false,
             });
         }
-        baseController_1.BaseController.ok(res, {
+        baseController_js_1.BaseController.ok(res, {
             data: designation,
             message: "Designation fetched successfully",
             status: true,

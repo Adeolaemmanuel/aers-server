@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import Questions from "../entities/questions.entity";
-import Stages from "../../system/entities/stages.entity";
-import { BaseController } from "../../../utils/baseController";
-import Answers from "../entities/answers.entity";
-import Users from "../../user/entities/user.entity";
+import Questions from "../entities/questions.entity.js";
+import Stages from "../../system/entities/stages.entity.js";
+import { BaseController } from "../../../utils/baseController.js";
+import Answers from "../entities/answers.entity.js";
+import Users from "../../user/entities/user.entity.js";
 
 const questionRepo = Questions;
 const stagesRepo = Stages;
