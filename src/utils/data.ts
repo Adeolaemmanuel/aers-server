@@ -23,8 +23,8 @@ const designation = [
 ];
 
 const questions = [
-  { question: "Date of incident", input_type: "text", stage_id: stages[0] },
-  { question: "Time of  incident", input_type: "date", stage_id: stages[0] },
+  { question: "Date of incident", input_type: "date", stage_id: stages[0] },
+  { question: "Time of  incident", input_type: "time", stage_id: stages[0] },
   {
     question: "Incident description/ How discovered",
     input_type: "textarea",
@@ -316,6 +316,27 @@ const questions = [
       "Aspiration",
       "Patient fall",
       "Pneumothorax: Abnormal collapse of the lungs",
+    ],
+  },
+  {
+    question: "Action Taken",
+    input_type: "textarea",
+    stage_id: 5,
+  },
+  {
+    question: "Comments/Recommendations",
+    input_type: "textarea",
+    stage_id: 5,
+  },
+  {
+    question: "Age Category",
+    input_type: "select",
+    stage_id: 6,
+    options: [
+      "Neonates- 0-28 days",
+      "Paediatric- 29 days to 17 years",
+      "Adult-18 years to 64 years",
+      "Geriatric-65 years and older,",
     ],
   },
 ];

@@ -100,3 +100,22 @@ export async function insertAnswers(req: Request, res: Response) {
     data: saved,
   });
 }
+
+export async function updateQuestion(req: Request, res: Response) {
+  const payload = req.body as UpdateQuestionDto;
+  console.log(payload);
+
+  const question = await questionRepo.findOne({ where: { id: payload.id } });
+
+  console.log(question);
+
+  // question.input_type = payload.input_type;
+
+  // const updated = await questionRepo.save(question);
+
+  // BaseController.ok(res, {
+  //   message: "Question updated successfully",
+  //   status: true,
+  //   DataView: updated,
+  // });
+}

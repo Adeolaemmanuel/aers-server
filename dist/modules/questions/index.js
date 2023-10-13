@@ -10,5 +10,6 @@ const questionV1 = express_1.default.Router();
 questionV1.post("/", validators_1.createQuestionValidator, v1_controller_1.createQuestion);
 questionV1.get("/:slug", v1_controller_1.getAllQuestions);
 questionV1.post("/answer", v1_controller_1.insertAnswers);
+questionV1.patch("/", v1_controller_1.updateQuestion);
 exports.default = questionV1;
 //# sourceMappingURL=index.js.map

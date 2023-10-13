@@ -5,3 +5,7 @@ type QuestionsDto = {
   stage_id?: number;
   answer_id?: number;
 };
+
+type UpdateQuestionDto = QuestionsDto & {
+  id?: number;
+};

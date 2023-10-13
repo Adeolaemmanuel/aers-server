@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertAnswers = exports.getAllQuestions = exports.createQuestion = void 0;
+exports.updateQuestion = exports.insertAnswers = exports.getAllQuestions = exports.createQuestion = void 0;
 const questions_entity_1 = __importDefault(require("../entities/questions.entity"));
 const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
@@ -111,4 +111,20 @@ function insertAnswers(req, res) {
     });
 }
 exports.insertAnswers = insertAnswers;
+function updateQuestion(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const payload = req.body;
+        console.log(payload);
+        const question = yield questionRepo.findOne({ where: { id: payload.id } });
+        console.log(question);
+        // question.input_type = payload.input_type;
+        // const updated = await questionRepo.save(question);
+        // BaseController.ok(res, {
+        //   message: "Question updated successfully",
+        //   status: true,
+        //   DataView: updated,
+        // });
+    });
+}
+exports.updateQuestion = updateQuestion;
 //# sourceMappingURL=v1.controller.js.map
