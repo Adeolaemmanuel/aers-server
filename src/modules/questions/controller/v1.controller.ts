@@ -109,13 +109,15 @@ export async function updateQuestion(req: Request, res: Response) {
 
   console.log(question);
 
-  // question.input_type = payload.input_type;
+  question.input_type = payload.input_type;
 
-  // const updated = await questionRepo.save(question);
+  const updated = await questionRepo.save(question);
 
-  // BaseController.ok(res, {
-  //   message: "Question updated successfully",
-  //   status: true,
-  //   DataView: updated,
-  // });
+  console.log(updated);
+
+  BaseController.ok(res, {
+    message: "Question updated successfully",
+    status: true,
+    DataView: updated,
+  });
 }
