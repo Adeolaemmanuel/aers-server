@@ -85,6 +85,8 @@ export async function insertAnswers(req: Request, res: Response) {
     })
   );
 
+  console.log(answers);
+  
   const answer = await answerRepo.create(answers);
   const saved = await answerRepo.insert(answer);
   if (!saved) {
