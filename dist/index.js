@@ -21,13 +21,13 @@ const settings_1 = require("./utils/settings");
 const system_1 = __importDefault(require("./modules/system"));
 const questions_1 = __importDefault(require("./modules/questions"));
 const app = (0, express_1.default)();
-const port = parseInt(settings_1.PORT) || 3000;
+const port = parseInt(settings_1.PORT) || 4000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/api/v1/users", user_1.default);
 app.use("/api/v1/system", system_1.default);
 app.use("/api/v1/questions", questions_1.default);
-app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
+app.listen(5000, () => __awaiter(void 0, void 0, void 0, function* () {
     const db = yield db_1.dataSource.initialize();
     if (db.isInitialized) {
         console.log(`Connected to the database 🚀`);

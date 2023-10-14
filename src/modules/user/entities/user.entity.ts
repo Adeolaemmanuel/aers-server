@@ -4,7 +4,7 @@ import {
   Generated,
   Index,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
 } from "typeorm";
 import Base from "../../../db/config/base.entity";
 import Designation from "../../system/entities/designation.entity";
@@ -30,7 +30,7 @@ export default class Users extends Base {
   @Column({ type: "text", unique: true })
   phone_number?: string;
 
-  @OneToOne(() => Designation)
+  @ManyToOne(() => Designation)
   @JoinColumn()
   designation?: Designation;
 

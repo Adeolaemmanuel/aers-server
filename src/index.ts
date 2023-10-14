@@ -8,7 +8,7 @@ import systemRouterV1 from "./modules/system";
 import questionV1 from "./modules/questions";
 
 const app = express();
-const port = parseInt(PORT!) || 3000;
+const port = parseInt(PORT!) || 4000;
 
 app.use(express.json());
 app.use(cors());

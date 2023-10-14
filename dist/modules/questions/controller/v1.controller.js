@@ -117,13 +117,14 @@ function updateQuestion(req, res) {
         console.log(payload);
         const question = yield questionRepo.findOne({ where: { id: payload.id } });
         console.log(question);
-        // question.input_type = payload.input_type;
-        // const updated = await questionRepo.save(question);
-        // BaseController.ok(res, {
-        //   message: "Question updated successfully",
-        //   status: true,
-        //   DataView: updated,
-        // });
+        question.input_type = payload.input_type;
+        const updated = yield questionRepo.save(question);
+        console.log(updated);
+        baseController_1.BaseController.ok(res, {
+            message: "Question updated successfully",
+            status: true,
+            DataView: updated,
+        });
     });
 }
 exports.updateQuestion = updateQuestion;

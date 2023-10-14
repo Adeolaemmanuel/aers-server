@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "phone_number", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => designation_entity_1.default),
+    (0, typeorm_1.ManyToOne)(() => designation_entity_1.default),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", designation_entity_1.default)
 ], Users.prototype, "designation", void 0);
