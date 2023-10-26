@@ -9,7 +9,7 @@
     "dev": "nodemon",
     "start": "yarn && tsc && yarn m:run && cd ./dist",
     "typeorm": "typeorm-ts-node-commonjs",
-    "m:generate": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
+    "m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
     "m:run": "yarn typeorm migration:run -d src/db/db.ts",
     "m:create": "typeorm migration:create src/db/migrations/"
   },
