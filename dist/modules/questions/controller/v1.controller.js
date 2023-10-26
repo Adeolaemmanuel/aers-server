@@ -95,6 +95,7 @@ function insertAnswers(req, res) {
                 };
             }
         })));
+        console.log(answers);
         const answer = yield answerRepo.create(answers);
         const saved = yield answerRepo.insert(answer);
         if (!saved) {

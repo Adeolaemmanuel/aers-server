@@ -4,10 +4,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
+  Index,
 } from "typeorm";
 
 export default class Base extends BaseEntity {
   @PrimaryGeneratedColumn()
+  @Index()
   id?: number;
 
   @CreateDateColumn({

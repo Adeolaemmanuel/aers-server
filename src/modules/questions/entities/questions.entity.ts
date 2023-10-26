@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-} from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import Base from "../../../db/config/base.entity";
 import Stages from "../../system/entities/stages.entity";
 import Answers from "./answers.entity";

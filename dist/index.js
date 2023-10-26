@@ -27,7 +27,7 @@ app.use((0, cors_1.default)());
 app.use("/api/v1/users", user_1.default);
 app.use("/api/v1/system", system_1.default);
 app.use("/api/v1/questions", questions_1.default);
-app.listen(5000, () => __awaiter(void 0, void 0, void 0, function* () {
+app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     const db = yield db_1.dataSource.initialize();
     if (db.isInitialized) {
         console.log(`Connected to the database 🚀`);

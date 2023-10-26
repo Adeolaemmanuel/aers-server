@@ -14,6 +14,7 @@ export async function createQuestion(req: Request, res: Response) {
   const payload = req.body as QuestionsDto;
 
   const stage = await stagesRepo.findOne({ where: { id: payload.stage_id } });
+
   if (!stage) {
     return BaseController.clientError(res, {
       message: "An error occurred while trying to getting stage",
@@ -36,7 +37,7 @@ export async function createQuestion(req: Request, res: Response) {
   });
 }
 
-export async function getAllQuestions(req: Request, res: Response) {
+export async function getQuestionsBySlug(req: Request, res: Response) {
   const slug = req.params.slug as string;
 
   const resp = await questionRepo.find({
@@ -46,6 +47,7 @@ export async function getAllQuestions(req: Request, res: Response) {
       stage: true,
     },
   });
+
   if (!resp) {
     return BaseController.clientError(res, {
       message: "An error occurred while trying to getting question",
@@ -62,7 +64,9 @@ export async function getAllQuestions(req: Request, res: Response) {
 
 export async function insertAnswers(req: Request, res: Response) {
   const payload = req.body as InsertAnswers;
+
   const email = req.headers.authorization;
+
   const answers = await Promise.all(
     Object.keys(payload).map(async (key) => {
       if (Array.isArray(payload[key])) {
@@ -86,9 +90,11 @@ export async function insertAnswers(req: Request, res: Response) {
   );
 
   console.log(answers);
-  
+
   const answer = await answerRepo.create(answers);
+
   const saved = await answerRepo.insert(answer);
+
   if (!saved) {
     return BaseController.clientError(res, {
       message: "An error occurred while trying to getting answer",
@@ -122,4 +128,10 @@ export async function updateQuestion(req: Request, res: Response) {
     status: true,
     DataView: updated,
   });
+}
+
+export async function getAllQuestion(req: Request, res: Response) {
+  const question = await questionRepo.find();
+
+  BaseController.ok(res, { data: question });
 }

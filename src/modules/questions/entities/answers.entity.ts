@@ -1,10 +1,11 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, Index, ManyToOne } from "typeorm";
 import Questions from "./questions.entity";
 import Base from "../../../db/config/base.entity";
 
 @Entity("answers")
 export default class Answers extends Base {
   @Column({ type: "text" })
+  @Index()
   user_id: string;
 
   @Column({ type: "text", nullable: true })

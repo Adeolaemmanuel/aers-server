@@ -71,6 +71,7 @@ exports.updateUser = updateUser;
 function getUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const key = req.params.id;
+        console.log(key);
         const user = yield userRepo.findOne({
             where: [{ email: key === null || key === void 0 ? void 0 : key.toLowerCase() }, { phone_number: key }],
         });

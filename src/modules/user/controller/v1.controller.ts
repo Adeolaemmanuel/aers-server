@@ -59,6 +59,8 @@ export async function updateUser(req: Request, res: Response) {
 
 export async function getUser(req: Request, res: Response) {
   const key = req.params.id as string;
+  console.log(key);
+  
 
   const user = await userRepo.findOne({
     where: [{ email: key?.toLowerCase() }, { phone_number: key }],
