@@ -27,7 +27,12 @@ export async function createStage(req: Request, res: Response) {
 }
 
 export async function getAllStage(req: Request, res: Response) {
-  const stages = await stageRepo.find();
+  const stages = await stageRepo.find({
+    relations: {
+      question: true,
+    },
+  });
+  
   if (!stages) {
     return BaseController.clientError(res, {
       message: "An error occurred while trying to get stages",

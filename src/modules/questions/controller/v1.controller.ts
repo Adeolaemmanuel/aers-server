@@ -131,7 +131,13 @@ export async function updateQuestion(req: Request, res: Response) {
 }
 
 export async function getAllQuestion(req: Request, res: Response) {
-  const question = await questionRepo.find();
+  const question = await questionRepo.find({ relations: { stage: true } });
 
-  BaseController.ok(res, { data: question });
+  BaseController.ok(res, { data: question, status: true });
+}
+
+export async function getAllAnswers(req: Request, res: Response) {
+  const answers = await answerRepo.find({ relations: { question: true } });
+
+  BaseController.ok(res, { data: answers, status: true });
 }

@@ -60,7 +60,6 @@ export async function updateUser(req: Request, res: Response) {
 export async function getUser(req: Request, res: Response) {
   const key = req.params.id as string;
   console.log(key);
-  
 
   const user = await userRepo.findOne({
     where: [{ email: key?.toLowerCase() }, { phone_number: key }],
@@ -77,4 +76,14 @@ export async function getUser(req: Request, res: Response) {
     message: "User fetched successfully",
     status: true,
   });
+}
+
+export async function getAllUsers(req: Request, res: Response) {
+  const users = userRepo.find({
+    relations: {
+      designation: true,
+    },
+  });
+
+  BaseController.ok(res, { data: users, status: true });
 }
