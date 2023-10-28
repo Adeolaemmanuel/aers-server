@@ -14,6 +14,7 @@ class Base extends typeorm_1.BaseEntity {
 }
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.Index)(),
     __metadata("design:type", Number)
 ], Base.prototype, "id", void 0);
 __decorate([

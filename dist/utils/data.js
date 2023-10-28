@@ -21,7 +21,7 @@ const designation = [
     { name: "Nursing Intern", slug: "nursing_intern" },
 ];
 const questions = [
-    { question: "Date of incident", input_type: "date", stage_id: stages[0] },
+    { question: "Date of report", input_type: "date", stage_id: stages[0] },
     { question: "Time of  incident", input_type: "time", stage_id: stages[0] },
     {
         question: "Incident description/ How discovered",

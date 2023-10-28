@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.updateUser = exports.createUser = void 0;
+exports.getAllUsers = exports.getUser = exports.updateUser = exports.createUser = void 0;
 const designation_entity_1 = __importDefault(require("../../system/entities/designation.entity"));
 const user_entity_1 = __importDefault(require("../entities/user.entity"));
 const baseController_1 = require("../../../utils/baseController");
@@ -89,4 +89,15 @@ function getUser(req, res) {
     });
 }
 exports.getUser = getUser;
+function getAllUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const users = userRepo.find({
+            relations: {
+                designation: true,
+            },
+        });
+        baseController_1.BaseController.ok(res, { data: users, status: true });
+    });
+}
+exports.getAllUsers = getAllUsers;
 //# sourceMappingURL=v1.controller.js.map

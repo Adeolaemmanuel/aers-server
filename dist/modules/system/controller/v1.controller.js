@@ -38,7 +38,11 @@ function createStage(req, res) {
 exports.createStage = createStage;
 function getAllStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const stages = yield stageRepo.find();
+        const stages = yield stageRepo.find({
+            relations: {
+                question: true,
+            },
+        });
         if (!stages) {
             return baseController_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to get stages",

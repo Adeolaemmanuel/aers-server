@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import Base from "../../../db/config/base.entity";
 import Stages from "../../system/entities/stages.entity";
 import Answers from "./answers.entity";
@@ -9,12 +9,14 @@ export default class Questions extends Base {
   question: string;
 
   @Column({ type: "text" })
+  @Index()
   input_type: string;
 
   @Column({ type: "jsonb", nullable: true })
   options: any;
 
   @ManyToOne(() => Stages, (sta) => sta.question)
+  @JoinColumn()
   stage?: Stages;
 
   @OneToMany(() => Answers, (ans) => ans.question)

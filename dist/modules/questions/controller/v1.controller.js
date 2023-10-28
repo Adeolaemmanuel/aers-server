@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateQuestion = exports.insertAnswers = exports.getAllQuestions = exports.createQuestion = void 0;
+exports.getAllAnswers = exports.getAllQuestion = exports.updateQuestion = exports.insertAnswers = exports.getQuestionsBySlug = exports.createQuestion = void 0;
 const questions_entity_1 = __importDefault(require("../entities/questions.entity"));
 const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
@@ -47,7 +47,7 @@ function createQuestion(req, res) {
     });
 }
 exports.createQuestion = createQuestion;
-function getAllQuestions(req, res) {
+function getQuestionsBySlug(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const slug = req.params.slug;
         const resp = yield questionRepo.find({
@@ -70,7 +70,7 @@ function getAllQuestions(req, res) {
         });
     });
 }
-exports.getAllQuestions = getAllQuestions;
+exports.getQuestionsBySlug = getQuestionsBySlug;
 function insertAnswers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = req.body;
@@ -129,4 +129,18 @@ function updateQuestion(req, res) {
     });
 }
 exports.updateQuestion = updateQuestion;
+function getAllQuestion(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const question = yield questionRepo.find({ relations: { stage: true } });
+        baseController_1.BaseController.ok(res, { data: question, status: true });
+    });
+}
+exports.getAllQuestion = getAllQuestion;
+function getAllAnswers(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const answers = yield answerRepo.find({ relations: { question: true } });
+        baseController_1.BaseController.ok(res, { data: answers, status: true });
+    });
+}
+exports.getAllAnswers = getAllAnswers;
 //# sourceMappingURL=v1.controller.js.map

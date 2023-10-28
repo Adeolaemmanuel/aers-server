@@ -19,6 +19,7 @@ let Answers = class Answers extends base_entity_1.default {
 };
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Index)(),
     __metadata("design:type", String)
 ], Answers.prototype, "user_id", void 0);
 __decorate([
@@ -31,6 +32,7 @@ __decorate([
 ], Answers.prototype, "values", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.question),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", questions_entity_1.default)
 ], Answers.prototype, "question", void 0);
 Answers = __decorate([

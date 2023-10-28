@@ -1,4 +1,4 @@
-import { Column, Entity, Index, ManyToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import Questions from "./questions.entity";
 import Base from "../../../db/config/base.entity";
 
@@ -15,5 +15,6 @@ export default class Answers extends Base {
   values: any;
 
   @ManyToOne(() => Questions, (que) => que.question)
+  @JoinColumn()
   question: Questions;
 }

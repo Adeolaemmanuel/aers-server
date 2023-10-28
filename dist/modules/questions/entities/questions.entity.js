@@ -24,6 +24,7 @@ __decorate([
 ], Questions.prototype, "question", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Index)(),
     __metadata("design:type", String)
 ], Questions.prototype, "input_type", void 0);
 __decorate([
@@ -32,6 +33,7 @@ __decorate([
 ], Questions.prototype, "options", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => stages_entity_1.default, (sta) => sta.question),
+    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", stages_entity_1.default)
 ], Questions.prototype, "stage", void 0);
 __decorate([
