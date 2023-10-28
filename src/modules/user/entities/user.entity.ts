@@ -30,7 +30,7 @@ export default class Users extends Base {
   @Column({ type: "text", unique: true })
   phone_number?: string;
 
-  @ManyToOne(() => Designation)
+  @ManyToOne(() => Designation, (desg) => desg.users)
   @JoinColumn()
   designation?: Designation;
 

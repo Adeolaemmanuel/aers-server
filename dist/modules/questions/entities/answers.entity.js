@@ -31,9 +31,8 @@ __decorate([
     __metadata("design:type", Object)
 ], Answers.prototype, "values", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.question),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", questions_entity_1.default)
+    (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.answer),
+    __metadata("design:type", Array)
 ], Answers.prototype, "question", void 0);
 Answers = __decorate([
     (0, typeorm_1.Entity)("answers")

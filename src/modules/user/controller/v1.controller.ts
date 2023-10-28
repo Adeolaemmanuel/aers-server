@@ -79,7 +79,7 @@ export async function getUser(req: Request, res: Response) {
 }
 
 export async function getAllUsers(req: Request, res: Response) {
-  const users = userRepo.find({
+  const users = await userRepo.find({
     relations: {
       designation: true,
     },

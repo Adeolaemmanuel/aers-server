@@ -91,7 +91,7 @@ function getUser(req, res) {
 exports.getUser = getUser;
 function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const users = userRepo.find({
+        const users = yield userRepo.find({
             relations: {
                 designation: true,
             },
