@@ -82,6 +82,7 @@ export async function getAllUsers(req: Request, res: Response) {
   const users = await userRepo.find({
     relations: {
       designation: true,
+      questions: true,
     },
   });
 
