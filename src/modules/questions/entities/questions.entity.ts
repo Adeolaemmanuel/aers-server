@@ -2,6 +2,7 @@ import { Column, Entity, Index, ManyToOne, OneToMany } from "typeorm";
 import Base from "../../../db/config/base.entity";
 import Stages from "../../system/entities/stages.entity";
 import Answers from "./answers.entity";
+import Users from "../../../modules/user/entities/user.entity";
 
 @Entity("questions")
 export default class Questions extends Base {
@@ -20,4 +21,7 @@ export default class Questions extends Base {
 
   @OneToMany(() => Answers, (ans) => ans.question)
   answer: Answers[];
+
+  @ManyToOne(() => Users, (user) => user.questions)
+  user: Users;
 }

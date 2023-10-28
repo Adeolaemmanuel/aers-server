@@ -3,11 +3,12 @@ import {
   Entity,
   Generated,
   Index,
-  JoinColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import Base from "../../../db/config/base.entity";
 import Designation from "../../system/entities/designation.entity";
+import Questions from "../../../modules/questions/entities/questions.entity";
 
 @Entity("users")
 export default class Users extends Base {
@@ -31,8 +32,10 @@ export default class Users extends Base {
   phone_number?: string;
 
   @ManyToOne(() => Designation, (desg) => desg.users)
-  @JoinColumn()
   designation?: Designation;
+
+  @OneToMany(() => Questions, (que) => que.question)
+  questions: Questions[];
 
   @Column({ type: "boolean" })
   is_contactable?: boolean;

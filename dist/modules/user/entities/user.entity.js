@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
 const designation_entity_1 = __importDefault(require("../../system/entities/designation.entity"));
+const questions_entity_1 = __importDefault(require("../../../modules/questions/entities/questions.entity"));
 let Users = class Users extends base_entity_1.default {
 };
 __decorate([
@@ -43,9 +44,12 @@ __decorate([
 ], Users.prototype, "phone_number", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => designation_entity_1.default, (desg) => desg.users),
-    (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", designation_entity_1.default)
 ], Users.prototype, "designation", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.question),
+    __metadata("design:type", Array)
+], Users.prototype, "questions", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "boolean" }),
     __metadata("design:type", Boolean)

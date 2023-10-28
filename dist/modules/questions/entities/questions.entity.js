@@ -16,6 +16,7 @@ const typeorm_1 = require("typeorm");
 const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
 const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
 const answers_entity_1 = __importDefault(require("./answers.entity"));
+const user_entity_1 = __importDefault(require("../../../modules/user/entities/user.entity"));
 let Questions = class Questions extends base_entity_1.default {
 };
 __decorate([
@@ -39,6 +40,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (ans) => ans.question),
     __metadata("design:type", Array)
 ], Questions.prototype, "answer", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.default, (user) => user.questions),
+    __metadata("design:type", user_entity_1.default)
+], Questions.prototype, "user", void 0);
 Questions = __decorate([
     (0, typeorm_1.Entity)("questions")
 ], Questions);
