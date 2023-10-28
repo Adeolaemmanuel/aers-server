@@ -34,7 +34,7 @@ export default class Users extends Base {
   @ManyToOne(() => Designation, (desg) => desg.users)
   designation?: Designation;
 
-  @OneToMany(() => Questions, (que) => que.question)
+  @OneToMany(() => Questions, (que) => que.user)
   questions: Questions[];
 
   @Column({ type: "boolean" })
