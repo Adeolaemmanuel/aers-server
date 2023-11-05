@@ -9,6 +9,7 @@ import {
 import Base from "../../../db/config/base.entity";
 import Designation from "../../system/entities/designation.entity";
 import Questions from "../../../modules/questions/entities/questions.entity";
+import Answers from "../../../modules/questions/entities/answers.entity";
 
 @Entity("users")
 export default class Users extends Base {
@@ -39,6 +40,12 @@ export default class Users extends Base {
     onDelete: "CASCADE",
   })
   questions: Questions[];
+
+  @OneToMany(() => Answers, (answer) => answer.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
+  answers: Answers[];
 
   @Column({ type: "boolean" })
   is_contactable?: boolean;

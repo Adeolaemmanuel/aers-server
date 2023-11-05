@@ -16,6 +16,7 @@ const typeorm_1 = require("typeorm");
 const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
 const designation_entity_1 = __importDefault(require("../../system/entities/designation.entity"));
 const questions_entity_1 = __importDefault(require("../../../modules/questions/entities/questions.entity"));
+const answers_entity_1 = __importDefault(require("../../../modules/questions/entities/answers.entity"));
 let Users = class Users extends base_entity_1.default {
 };
 __decorate([
@@ -53,6 +54,13 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], Users.prototype, "questions", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (answer) => answer.user, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
+    __metadata("design:type", Array)
+], Users.prototype, "answers", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "boolean" }),
     __metadata("design:type", Boolean)

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const questions_entity_1 = __importDefault(require("./questions.entity"));
 const base_entity_1 = __importDefault(require("../../../db/config/base.entity"));
+const user_entity_1 = __importDefault(require("../../../modules/user/entities/user.entity"));
 let Answers = class Answers extends base_entity_1.default {
 };
 __decorate([
@@ -37,6 +38,13 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], Answers.prototype, "question", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.default, (user) => user.answers, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
+    __metadata("design:type", Array)
+], Answers.prototype, "user", void 0);
 Answers = __decorate([
     (0, typeorm_1.Entity)("answers")
 ], Answers);

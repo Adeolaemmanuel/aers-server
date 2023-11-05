@@ -1,6 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import Questions from "./questions.entity";
 import Base from "../../../db/config/base.entity";
+import Users from "../../../modules/user/entities/user.entity";
 
 @Entity("answers")
 export default class Answers extends Base {
@@ -15,8 +16,12 @@ export default class Answers extends Base {
   values: any;
 
   @ManyToOne(() => Questions, (que) => que.answer, {
-    cascade: true,
     onDelete: "CASCADE",
   })
   question: Questions[];
+
+  @ManyToOne(() => Users, (user) => user.answers, {
+    onDelete: "CASCADE",
+  })
+  user: Users[];
 }
