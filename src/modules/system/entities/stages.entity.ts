@@ -10,6 +10,6 @@ export default class Stages extends Base {
   @Column({ type: "text" })
   slug?: string;
 
-  @OneToMany(() => Questions, (que) => que.stage)
+  @OneToMany(() => Questions, (que) => que.stage, { cascade: true })
   question?: Questions;
 }

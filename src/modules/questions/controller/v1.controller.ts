@@ -152,7 +152,7 @@ export async function deleteQuestion(req: Request, res: Response) {
     where: { id: req.body.id },
   });
 
-  const deleted = await questionRepo.delete({id: req.body.id });
+  const deleted = await questionRepo.remove(deleteQuestion);
 
   BaseController.ok(res, { data: deleted, status: true });
 }

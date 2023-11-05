@@ -14,6 +14,6 @@ export default class Answers extends Base {
   @Column({ type: "jsonb", nullable: true })
   values: any;
 
-  @ManyToOne(() => Questions, (que) => que.answer)
+  @ManyToOne(() => Questions, (que) => que.answer, { onDelete: "NO ACTION" })
   question: Questions[];
 }
