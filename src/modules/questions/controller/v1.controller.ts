@@ -128,7 +128,7 @@ export async function updateQuestion(req: Request, res: Response) {
     BaseController.ok(res, {
       message: "Question updated successfully",
       status: true,
-      DataView: updated,
+      data: updated,
     });
   } catch (error) {
     BaseController.fail(res, error);
@@ -150,7 +150,11 @@ export async function getAllAnswers(req: Request, res: Response) {
     relations: { question: true },
   });
 
-  BaseController.ok(res, { data: answers, status: true });
+  BaseController.ok(res, {
+    data: answers,
+    status: true,
+    message: "Answers fetched successfully",
+  });
 }
 
 export async function deleteQuestion(req: Request, res: Response) {
@@ -160,5 +164,9 @@ export async function deleteQuestion(req: Request, res: Response) {
 
   const deleted = await questionRepo.remove(deleteQuestion);
 
-  BaseController.ok(res, { data: deleted, status: true });
+  BaseController.ok(res, {
+    data: deleted,
+    status: true,
+    message: "Question deleted successfully",
+  });
 }

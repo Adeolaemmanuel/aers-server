@@ -12,13 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllDesignation = exports.createDesignation = exports.getAllStage = exports.createStage = void 0;
+exports.getSystemStats = exports.getAllDesignation = exports.createDesignation = exports.getAllStage = exports.createStage = void 0;
 const designation_entity_1 = __importDefault(require("../entities/designation.entity"));
 const stages_entity_1 = __importDefault(require("../entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
 const slugify_1 = __importDefault(require("slugify"));
+const user_entity_1 = __importDefault(require("../../../modules/user/entities/user.entity"));
+const questions_entity_1 = __importDefault(require("../../../modules/questions/entities/questions.entity"));
 const stageRepo = stages_entity_1.default;
 const designationRepo = designation_entity_1.default;
+const userRepo = user_entity_1.default;
+const question = questions_entity_1.default;
 function createStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -115,4 +119,24 @@ function getAllDesignation(req, res) {
     });
 }
 exports.getAllDesignation = getAllDesignation;
+function getSystemStats(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const stats = {
+                user: 0,
+                questions: 0,
+                stages: 0,
+                designation: 0,
+            };
+            stats.user = yield userRepo.findAndCount()[1];
+            stats.questions = yield question.findAndCount()[1];
+            stats.stages = yield stageRepo.findAndCount()[1];
+            stats.designation = yield designationRepo.findAndCount()[1];
+        }
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
+    });
+}
+exports.getSystemStats = getSystemStats;
 //# sourceMappingURL=v1.controller.js.map

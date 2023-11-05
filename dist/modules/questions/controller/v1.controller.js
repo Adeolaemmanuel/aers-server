@@ -128,7 +128,7 @@ function updateQuestion(req, res) {
             baseController_1.BaseController.ok(res, {
                 message: "Question updated successfully",
                 status: true,
-                DataView: updated,
+                data: updated,
             });
         }
         catch (error) {
@@ -154,8 +154,11 @@ function getAllAnswers(req, res) {
         const answers = yield answerRepo.findAndCount({
             relations: { question: true },
         });
-        console.log(answers);
-        baseController_1.BaseController.ok(res, { data: answers, status: true });
+        baseController_1.BaseController.ok(res, {
+            data: answers,
+            status: true,
+            message: "Answers fetched successfully",
+        });
     });
 }
 exports.getAllAnswers = getAllAnswers;
@@ -165,7 +168,11 @@ function deleteQuestion(req, res) {
             where: { id: req.body.id },
         });
         const deleted = yield questionRepo.remove(deleteQuestion);
-        baseController_1.BaseController.ok(res, { data: deleted, status: true });
+        baseController_1.BaseController.ok(res, {
+            data: deleted,
+            status: true,
+            message: "Question deleted successfully",
+        });
     });
 }
 exports.deleteQuestion = deleteQuestion;

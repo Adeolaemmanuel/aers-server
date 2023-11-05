@@ -5,9 +5,13 @@ import { BaseController } from "../../../utils/baseController";
 import { createStageDto } from "../dto/stage.dto";
 import { createDesignationDto } from "../dto/designation.dto";
 import slugify from "slugify";
+import Users from "../../../modules/user/entities/user.entity";
+import Questions from "../../../modules/questions/entities/questions.entity";
 
 const stageRepo = Stages;
 const designationRepo = Designation;
+const userRepo = Users;
+const question = Questions;
 
 export async function createStage(req: Request, res: Response) {
   try {
@@ -97,6 +101,24 @@ export async function getAllDesignation(req: Request, res: Response) {
       message: "Designation fetched successfully",
       status: true,
     });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
+}
+
+export async function getSystemStats(req: Request, res: Response) {
+  try {
+    const stats = {
+      user: 0,
+      questions: 0,
+      stages: 0,
+      designation: 0,
+    };
+
+    stats.user = await userRepo.findAndCount()[1];
+    stats.questions = await question.findAndCount()[1];
+    stats.stages = await stageRepo.findAndCount()[1];
+    stats.designation = await designationRepo.findAndCount()[1];
   } catch (error) {
     BaseController.fail(res, error);
   }

@@ -24,4 +24,6 @@ systemRouterV1.post(
   createDesignation
 );
 
+systemRouterV1.get("/stats");
+
 export default systemRouterV1;
