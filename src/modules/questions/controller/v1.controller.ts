@@ -113,7 +113,6 @@ export async function insertAnswers(req: Request, res: Response) {
 
 export async function updateQuestion(req: Request, res: Response) {
   const payload = req.body as UpdateQuestionDto;
-  console.log(payload);
 
   const question = await questionRepo.findOne({ where: { id: payload.id } });
 
@@ -146,4 +145,14 @@ export async function getAllAnswers(req: Request, res: Response) {
   const answers = await answerRepo.find({ relations: { question: true } });
 
   BaseController.ok(res, { data: answers, status: true });
+}
+
+export async function deleteQuestion(req: Request, res: Response) {
+  const deleteQuestion = await questionRepo.findOne({
+    where: { id: req.body.id },
+  });
+
+  const deleted = await questionRepo.remove(deleteQuestion);
+
+  BaseController.ok(res, { data: deleted, status: true });
 }

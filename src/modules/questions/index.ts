@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createQuestion,
+  deleteQuestion,
   getAllQuestion,
   getQuestionsBySlug,
   insertAnswers,
@@ -19,5 +20,7 @@ questionV1.get("/:slug", getQuestionsBySlug);
 questionV1.post("/answer", insertAnswers);
 
 questionV1.patch("/", updateQuestion);
+
+questionV1.delete("/", deleteQuestion);
 
 export default questionV1;
