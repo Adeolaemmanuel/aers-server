@@ -13,7 +13,9 @@ const userRepo = Users;
 export async function createQuestion(req: Request, res: Response) {
   const payload = req.body as QuestionsDto;
 
-  const stage = await stagesRepo.findOne({ where: { id: payload.stage_id } });
+  const stage = await stagesRepo.findOne({
+    where: { slug: payload.stage_slug },
+  });
 
   if (!stage) {
     return BaseController.clientError(res, {
@@ -117,7 +119,13 @@ export async function updateQuestion(req: Request, res: Response) {
 
   console.log(question);
 
-  question.input_type = payload.input_type;
+  if (payload.input_type) question.input_type = payload.input_type;
+  if (payload.question) question.question = payload.question;
+  if (payload.stage_slug) {
+    question.stage = await stagesRepo.findOne({
+      where: { slug: payload.stage_slug },
+    });
+  }
 
   const updated = await questionRepo.save(question);
 

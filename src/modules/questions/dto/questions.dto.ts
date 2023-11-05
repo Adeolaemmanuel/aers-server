@@ -2,7 +2,7 @@ type QuestionsDto = {
   question: string;
   input_type: string;
   options: any;
-  stage_id?: number;
+  stage_slug?: string;
   answer_id?: number;
 };
 
