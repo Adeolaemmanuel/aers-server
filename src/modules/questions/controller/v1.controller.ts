@@ -146,7 +146,7 @@ export async function getAllQuestion(req: Request, res: Response) {
 
 export async function getAllAnswers(req: Request, res: Response) {
   const answers = await answerRepo.findAndCount({
-    relations: { question: true },
+    relations: { question: true, user: true },
   });
 
   BaseController.ok(res, {
