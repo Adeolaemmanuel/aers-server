@@ -17,7 +17,7 @@ export async function createStage(req: Request, res: Response) {
   try {
     const payload = req.body as createStageDto;
 
-    payload.slug = slugify(payload.name);
+    payload.slug = slugify(payload.name, { lower: true, trim: true });
 
     const stages = await stageRepo.insert({ ...payload });
     if (!stages) {
@@ -85,7 +85,7 @@ export async function createDesignation(req: Request, res: Response) {
   try {
     const payload = req.body as createDesignationDto;
 
-    payload.slug = slugify(payload.name);
+    payload.slug = slugify(payload.name, { lower: true, trim: true });
 
     const designation = await designationRepo.insert({ ...payload });
     if (!designation) {
