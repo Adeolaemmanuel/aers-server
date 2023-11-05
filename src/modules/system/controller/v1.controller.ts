@@ -39,7 +39,7 @@ export async function createStage(req: Request, res: Response) {
 
 export async function deleteStage(req: Request, res: Response) {
   try {
-    const slug = req.body.name;
+    const slug = req.body.slug;
 
     const stage = await stageRepo.findOne({ where: { slug } });
 
@@ -107,7 +107,7 @@ export async function createDesignation(req: Request, res: Response) {
 
 export async function deleteDesignation(req: Request, res: Response) {
   try {
-    const slug = req.body.name;
+    const slug = req.body.slug;
 
     const designation = await designationRepo.findOne({ where: { slug } });
 
