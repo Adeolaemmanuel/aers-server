@@ -2,6 +2,7 @@ import express from "express";
 import {
   createQuestion,
   deleteQuestion,
+  getAllAnswers,
   getAllQuestion,
   getQuestionsBySlug,
   insertAnswers,
@@ -22,5 +23,7 @@ questionV1.post("/answer", insertAnswers);
 questionV1.patch("/", updateQuestion);
 
 questionV1.delete("/", deleteQuestion);
+
+questionV1.get("/answers", getAllAnswers);
 
 export default questionV1;

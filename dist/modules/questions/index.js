@@ -13,5 +13,6 @@ questionV1.get("/:slug", v1_controller_1.getQuestionsBySlug);
 questionV1.post("/answer", v1_controller_1.insertAnswers);
 questionV1.patch("/", v1_controller_1.updateQuestion);
 questionV1.delete("/", v1_controller_1.deleteQuestion);
+questionV1.get("/answers", v1_controller_1.getAllAnswers);
 exports.default = questionV1;
 //# sourceMappingURL=index.js.map

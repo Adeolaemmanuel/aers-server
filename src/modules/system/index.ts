@@ -24,6 +24,4 @@ systemRouterV1.post(
   createDesignation
 );
 
-systemRouterV1.post("/");
-
 export default systemRouterV1;

@@ -16,79 +16,102 @@ exports.getAllDesignation = exports.createDesignation = exports.getAllStage = ex
 const designation_entity_1 = __importDefault(require("../entities/designation.entity"));
 const stages_entity_1 = __importDefault(require("../entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
+const slugify_1 = __importDefault(require("slugify"));
 const stageRepo = stages_entity_1.default;
 const designationRepo = designation_entity_1.default;
 function createStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const payload = req.body;
-        const stages = yield stageRepo.insert(Object.assign({}, payload));
-        if (!stages) {
-            return baseController_1.BaseController.clientError(res, {
-                message: "An error occurred while trying to insert stages",
-                status: false,
+        try {
+            const payload = req.body;
+            payload.slug = (0, slugify_1.default)(payload.name);
+            const stages = yield stageRepo.insert(Object.assign({}, payload));
+            if (!stages) {
+                return baseController_1.BaseController.clientError(res, {
+                    message: "An error occurred while trying to insert stages",
+                    status: false,
+                });
+            }
+            baseController_1.BaseController.ok(res, {
+                data: stages.raw,
+                message: "Stages inserted successfully",
+                status: true,
             });
         }
-        baseController_1.BaseController.ok(res, {
-            data: stages.raw,
-            message: "Stages inserted successfully",
-            status: true,
-        });
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.createStage = createStage;
 function getAllStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const stages = yield stageRepo.find({
-            relations: {
-                question: true,
-            },
-        });
-        if (!stages) {
-            return baseController_1.BaseController.clientError(res, {
-                message: "An error occurred while trying to get stages",
-                status: false,
+        try {
+            const stages = yield stageRepo.find({
+                relations: {
+                    question: true,
+                },
+            });
+            if (!stages) {
+                return baseController_1.BaseController.clientError(res, {
+                    message: "An error occurred while trying to get stages",
+                    status: false,
+                });
+            }
+            baseController_1.BaseController.ok(res, {
+                data: stages,
+                message: "Stages fetched successfully",
+                status: true,
             });
         }
-        baseController_1.BaseController.ok(res, {
-            data: stages,
-            message: "Stages fetched successfully",
-            status: true,
-        });
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.getAllStage = getAllStage;
 function createDesignation(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const payload = req.body;
-        const designation = yield designationRepo.insert(Object.assign({}, payload));
-        if (!designation) {
-            return baseController_1.BaseController.clientError(res, {
-                message: "An error occurred while trying to insert designation",
-                status: false,
+        try {
+            const payload = req.body;
+            payload.slug = (0, slugify_1.default)(payload.name);
+            const designation = yield designationRepo.insert(Object.assign({}, payload));
+            if (!designation) {
+                return baseController_1.BaseController.clientError(res, {
+                    message: "An error occurred while trying to insert designation",
+                    status: false,
+                });
+            }
+            baseController_1.BaseController.ok(res, {
+                data: designation.raw,
+                message: "Designation inserted successfully",
+                status: true,
             });
         }
-        baseController_1.BaseController.ok(res, {
-            data: designation.raw,
-            message: "Designation inserted successfully",
-            status: true,
-        });
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.createDesignation = createDesignation;
 function getAllDesignation(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const designation = yield designationRepo.find();
-        if (!designation) {
-            return baseController_1.BaseController.clientError(res, {
-                message: "An error occurred while trying to get designation",
-                status: false,
+        try {
+            const designation = yield designationRepo.find();
+            if (!designation) {
+                return baseController_1.BaseController.clientError(res, {
+                    message: "An error occurred while trying to get designation",
+                    status: false,
+                });
+            }
+            baseController_1.BaseController.ok(res, {
+                data: designation,
+                message: "Designation fetched successfully",
+                status: true,
             });
         }
-        baseController_1.BaseController.ok(res, {
-            data: designation,
-            message: "Designation fetched successfully",
-            status: true,
-        });
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.getAllDesignation = getAllDesignation;

@@ -30,7 +30,7 @@ __decorate([
         cascade: true,
         onDelete: "CASCADE",
     }),
-    __metadata("design:type", questions_entity_1.default)
+    __metadata("design:type", Array)
 ], Stages.prototype, "question", void 0);
 Stages = __decorate([
     (0, typeorm_1.Entity)("stages")

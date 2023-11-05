@@ -112,37 +112,43 @@ export async function insertAnswers(req: Request, res: Response) {
 }
 
 export async function updateQuestion(req: Request, res: Response) {
-  const payload = req.body as UpdateQuestionDto;
+  try {
+    const payload = req.body as UpdateQuestionDto;
 
-  const question = await questionRepo.findOne({ where: { id: payload.id } });
+    const question = await questionRepo.findOne({ where: { id: payload.id } });
 
-  console.log(question);
+    question.input_type = payload.input_type;
+    question.question = payload.question;
+    question.stage = await stagesRepo.findOne({
+      where: { slug: payload.stage_slug },
+    });
 
-  question.input_type = payload.input_type;
-  question.question = payload.question;
-  question.stage = await stagesRepo.findOne({
-    where: { slug: payload.stage_slug },
-  });
+    const updated = await questionRepo.save(question);
 
-  const updated = await questionRepo.save(question);
-
-  console.log(updated);
-
-  BaseController.ok(res, {
-    message: "Question updated successfully",
-    status: true,
-    DataView: updated,
-  });
+    BaseController.ok(res, {
+      message: "Question updated successfully",
+      status: true,
+      DataView: updated,
+    });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
 }
 
 export async function getAllQuestion(req: Request, res: Response) {
-  const question = await questionRepo.find({ relations: { stage: true } });
+  try {
+    const question = await questionRepo.find({ relations: { stage: true } });
 
-  BaseController.ok(res, { data: question, status: true });
+    BaseController.ok(res, { data: question, status: true });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
 }
 
 export async function getAllAnswers(req: Request, res: Response) {
-  const answers = await answerRepo.find({ relations: { question: true } });
+  const answers = await answerRepo.findAndCount({
+    relations: { question: true },
+  });
 
   BaseController.ok(res, { data: answers, status: true });
 }

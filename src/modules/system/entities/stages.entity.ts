@@ -14,5 +14,5 @@ export default class Stages extends Base {
     cascade: true,
     onDelete: "CASCADE",
   })
-  question?: Questions;
+  question?: Questions[];
 }

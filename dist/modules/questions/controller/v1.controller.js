@@ -116,34 +116,44 @@ function insertAnswers(req, res) {
 exports.insertAnswers = insertAnswers;
 function updateQuestion(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const payload = req.body;
-        const question = yield questionRepo.findOne({ where: { id: payload.id } });
-        console.log(question);
-        question.input_type = payload.input_type;
-        question.question = payload.question;
-        question.stage = yield stagesRepo.findOne({
-            where: { slug: payload.stage_slug },
-        });
-        const updated = yield questionRepo.save(question);
-        console.log(updated);
-        baseController_1.BaseController.ok(res, {
-            message: "Question updated successfully",
-            status: true,
-            DataView: updated,
-        });
+        try {
+            const payload = req.body;
+            const question = yield questionRepo.findOne({ where: { id: payload.id } });
+            question.input_type = payload.input_type;
+            question.question = payload.question;
+            question.stage = yield stagesRepo.findOne({
+                where: { slug: payload.stage_slug },
+            });
+            const updated = yield questionRepo.save(question);
+            baseController_1.BaseController.ok(res, {
+                message: "Question updated successfully",
+                status: true,
+                DataView: updated,
+            });
+        }
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.updateQuestion = updateQuestion;
 function getAllQuestion(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const question = yield questionRepo.find({ relations: { stage: true } });
-        baseController_1.BaseController.ok(res, { data: question, status: true });
+        try {
+            const question = yield questionRepo.find({ relations: { stage: true } });
+            baseController_1.BaseController.ok(res, { data: question, status: true });
+        }
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
     });
 }
 exports.getAllQuestion = getAllQuestion;
 function getAllAnswers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const answers = yield answerRepo.find({ relations: { question: true } });
+        const answers = yield answerRepo.findAndCount({
+            relations: { question: true },
+        });
         baseController_1.BaseController.ok(res, { data: answers, status: true });
     });
 }
