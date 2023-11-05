@@ -11,6 +11,6 @@ systemRouterV1.post("/stages/add", validators_1.createStageValidator, v1_control
 systemRouterV1.get("/stages", v1_controller_1.getAllStage);
 systemRouterV1.get("/designation", v1_controller_1.getAllDesignation);
 systemRouterV1.post("/designation/add", validators_1.createDesignationValidator, v1_controller_1.createDesignation);
-systemRouterV1.get("/stats");
+systemRouterV1.get("/stats", v1_controller_1.getSystemStats);
 exports.default = systemRouterV1;
 //# sourceMappingURL=index.js.map

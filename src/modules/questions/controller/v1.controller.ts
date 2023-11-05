@@ -119,6 +119,7 @@ export async function updateQuestion(req: Request, res: Response) {
 
     question.input_type = payload.input_type;
     question.question = payload.question;
+    question.options = payload.options;
     question.stage = await stagesRepo.findOne({
       where: { slug: payload.stage_slug },
     });

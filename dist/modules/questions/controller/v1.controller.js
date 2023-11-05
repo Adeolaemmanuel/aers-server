@@ -121,6 +121,7 @@ function updateQuestion(req, res) {
             const question = yield questionRepo.findOne({ where: { id: payload.id } });
             question.input_type = payload.input_type;
             question.question = payload.question;
+            question.options = payload.options;
             question.stage = yield stagesRepo.findOne({
                 where: { slug: payload.stage_slug },
             });
