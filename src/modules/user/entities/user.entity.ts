@@ -34,9 +34,15 @@ export default class Users extends Base {
   @ManyToOne(() => Designation, (desg) => desg.users)
   designation?: Designation;
 
-  @OneToMany(() => Questions, (que) => que.user, { cascade: true })
+  @OneToMany(() => Questions, (que) => que.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   questions: Questions[];
 
   @Column({ type: "boolean" })
   is_contactable?: boolean;
+
+  @Column({ type: "boolean" })
+  active: boolean;
 }

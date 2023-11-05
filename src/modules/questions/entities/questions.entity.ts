@@ -16,7 +16,7 @@ export default class Questions extends Base {
   @Column({ type: "jsonb", nullable: true })
   options: any;
 
-  @ManyToOne(() => Stages, (sta) => sta.question, { onDelete: "NO ACTION" })
+  @ManyToOne(() => Stages, (sta) => sta.question, { onDelete: "CASCADE" })
   stage?: Stages;
 
   @OneToMany(() => Answers, (ans) => ans.question, {
@@ -24,6 +24,6 @@ export default class Questions extends Base {
   })
   answer: Answers[];
 
-  @ManyToOne(() => Users, (user) => user.questions, { onDelete: "NO ACTION" })
+  @ManyToOne(() => Users, (user) => user.questions, { onDelete: "CASCADE" })
   user: Users;
 }
