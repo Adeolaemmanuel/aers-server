@@ -16,6 +16,7 @@ export default class Answers extends Base {
 
   @ManyToOne(() => Questions, (que) => que.answer, {
     cascade: true,
+    onDelete: "CASCADE",
   })
   question: Questions[];
 }
