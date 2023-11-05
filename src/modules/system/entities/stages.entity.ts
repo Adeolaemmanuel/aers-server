@@ -11,7 +11,7 @@ export default class Stages extends Base {
   slug?: string;
 
   @OneToMany(() => Questions, (que) => que.stage, {
-    cascade: true,
+    cascade:  ["insert", "update"],
     onDelete: "CASCADE",
   })
   question?: Questions[];

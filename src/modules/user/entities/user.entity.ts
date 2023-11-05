@@ -32,17 +32,17 @@ export default class Users extends Base {
   @Column({ type: "text", unique: true })
   phone_number?: string;
 
-  @ManyToOne(() => Designation, (desg) => desg.users)
+  @ManyToOne(() => Designation, (desg) => desg.users, { onDelete: "SET NULL" })
   designation?: Designation;
 
   @OneToMany(() => Questions, (que) => que.user, {
-    cascade: true,
+    cascade: ["insert", "update"],
     onDelete: "CASCADE",
   })
   questions: Questions[];
 
   @OneToMany(() => Answers, (answer) => answer.user, {
-    cascade: true,
+    cascade:  ["insert", "update"],
     onDelete: "CASCADE",
   })
   answers: Answers[];

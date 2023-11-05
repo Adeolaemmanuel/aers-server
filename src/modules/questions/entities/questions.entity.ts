@@ -20,7 +20,7 @@ export default class Questions extends Base {
   stage?: Stages;
 
   @OneToMany(() => Answers, (ans) => ans.question, {
-    cascade: true,
+    cascade:  ["insert", "update"],
     onDelete: "CASCADE",
   })
   answer: Answers[];
