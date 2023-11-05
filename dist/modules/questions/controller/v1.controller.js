@@ -154,6 +154,7 @@ function getAllAnswers(req, res) {
         const answers = yield answerRepo.findAndCount({
             relations: { question: true },
         });
+        console.log(answers);
         baseController_1.BaseController.ok(res, { data: answers, status: true });
     });
 }
