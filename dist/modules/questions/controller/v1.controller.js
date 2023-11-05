@@ -25,7 +25,9 @@ const userRepo = user_entity_1.default;
 function createQuestion(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = req.body;
-        const stage = yield stagesRepo.findOne({ where: { id: payload.stage_id } });
+        const stage = yield stagesRepo.findOne({
+            where: { slug: payload.stage_slug },
+        });
         if (!stage) {
             return baseController_1.BaseController.clientError(res, {
                 message: "An error occurred while trying to getting stage",
@@ -118,7 +120,15 @@ function updateQuestion(req, res) {
         console.log(payload);
         const question = yield questionRepo.findOne({ where: { id: payload.id } });
         console.log(question);
-        question.input_type = payload.input_type;
+        if (payload.input_type)
+            question.input_type = payload.input_type;
+        if (payload.question)
+            question.question = payload.question;
+        if (payload.stage_slug) {
+            question.stage = yield stagesRepo.findOne({
+                where: { slug: payload.stage_slug },
+            });
+        }
         const updated = yield questionRepo.save(question);
         console.log(updated);
         baseController_1.BaseController.ok(res, {

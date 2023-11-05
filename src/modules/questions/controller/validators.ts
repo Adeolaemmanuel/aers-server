@@ -10,7 +10,7 @@ export const createQuestionValidator = (
   const payload: Partial<QuestionsDto> = {
     input_type: undefined,
     question: undefined,
-    stage_id: undefined,
+    stage_slug: undefined,
   };
 
   const valid = customValidator(payload, req);

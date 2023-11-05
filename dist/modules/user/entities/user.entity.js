@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:type", designation_entity_1.default)
 ], Users.prototype, "designation", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.question),
+    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.user),
     __metadata("design:type", Array)
 ], Users.prototype, "questions", void 0);
 __decorate([

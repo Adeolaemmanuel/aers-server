@@ -94,6 +94,7 @@ function getAllUsers(req, res) {
         const users = yield userRepo.find({
             relations: {
                 designation: true,
+                questions: true,
             },
         });
         baseController_1.BaseController.ok(res, { data: users, status: true });
