@@ -10,6 +10,6 @@ export default class Designation extends Base {
   @Column({ type: "text" })
   slug?: string;
 
-  @OneToMany(() => Users, (user) => user.designation, { onDelete: "SET NULL" })
+  @OneToMany(() => Users, (user) => user.designation, { onDelete: "CASCADE", })
   users: Users;
 }
