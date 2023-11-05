@@ -119,13 +119,11 @@ export async function updateQuestion(req: Request, res: Response) {
 
   console.log(question);
 
-  if (payload.input_type) question.input_type = payload.input_type;
-  if (payload.question) question.question = payload.question;
-  if (payload.stage_slug) {
-    question.stage = await stagesRepo.findOne({
-      where: { slug: payload.stage_slug },
-    });
-  }
+  question.input_type = payload.input_type;
+  question.question = payload.question;
+  question.stage = await stagesRepo.findOne({
+    where: { slug: payload.stage_slug },
+  });
 
   const updated = await questionRepo.save(question);
 
