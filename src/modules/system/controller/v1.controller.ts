@@ -119,6 +119,12 @@ export async function getSystemStats(req: Request, res: Response) {
     stats.questions = await question.findAndCount()[1];
     stats.stages = await stageRepo.findAndCount()[1];
     stats.designation = await designationRepo.findAndCount()[1];
+
+    BaseController.ok(res, {
+      data: stats,
+      message: "Dashboard fetched successfully",
+      status: true,
+    });
   } catch (error) {
     BaseController.fail(res, error);
   }

@@ -132,6 +132,11 @@ function getSystemStats(req, res) {
             stats.questions = yield question.findAndCount()[1];
             stats.stages = yield stageRepo.findAndCount()[1];
             stats.designation = yield designationRepo.findAndCount()[1];
+            baseController_1.BaseController.ok(res, {
+                data: stats,
+                message: "Stats fetched successfully",
+                status: true,
+            });
         }
         catch (error) {
             baseController_1.BaseController.fail(res, error);
