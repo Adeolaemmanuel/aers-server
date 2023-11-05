@@ -37,6 +37,24 @@ export async function createStage(req: Request, res: Response) {
   }
 }
 
+export async function deleteStage(req: Request, res: Response) {
+  try {
+    const slug = req.body.name;
+
+    const stage = await stageRepo.findOne({ where: { slug } });
+
+    const isDeleted = await stageRepo.remove(stage);
+
+    BaseController.ok(res, {
+      data: isDeleted,
+      message: "Stage deleted successfully",
+      status: true,
+    });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
+}
+
 export async function getAllStage(req: Request, res: Response) {
   try {
     const stages = await stageRepo.find({
@@ -80,6 +98,24 @@ export async function createDesignation(req: Request, res: Response) {
     BaseController.ok(res, {
       data: designation.raw,
       message: "Designation inserted successfully",
+      status: true,
+    });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
+}
+
+export async function deleteDesignation(req: Request, res: Response) {
+  try {
+    const slug = req.body.name;
+
+    const designation = await designationRepo.findOne({ where: { slug } });
+
+    const isDeleted = await designationRepo.remove(designation);
+
+    BaseController.ok(res, {
+      data: isDeleted,
+      message: "Designation deleted successfully",
       status: true,
     });
   } catch (error) {
