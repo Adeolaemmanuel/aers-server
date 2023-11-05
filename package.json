@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "start": "yarn && tsc && yarn m:run && cd . && cd ./dist",
+    "start": "yarn && tsc && yarn m:run && cd . && cd ./dist && ls",
     "typeorm": "typeorm-ts-node-commonjs",
     "m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
     "m:run": "yarn typeorm migration:run -d src/db/db.ts",
