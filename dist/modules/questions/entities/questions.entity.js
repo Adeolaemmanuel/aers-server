@@ -33,15 +33,17 @@ __decorate([
     __metadata("design:type", Object)
 ], Questions.prototype, "options", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => stages_entity_1.default, (sta) => sta.question),
+    (0, typeorm_1.ManyToOne)(() => stages_entity_1.default, (sta) => sta.question, { onDelete: "CASCADE" }),
     __metadata("design:type", stages_entity_1.default)
 ], Questions.prototype, "stage", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (ans) => ans.question),
+    (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (ans) => ans.question, {
+        onDelete: "CASCADE",
+    }),
     __metadata("design:type", Array)
 ], Questions.prototype, "answer", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.default, (user) => user.questions),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.default, (user) => user.questions, { onDelete: "CASCADE" }),
     __metadata("design:type", user_entity_1.default)
 ], Questions.prototype, "user", void 0);
 Questions = __decorate([

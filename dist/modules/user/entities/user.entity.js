@@ -47,13 +47,20 @@ __decorate([
     __metadata("design:type", designation_entity_1.default)
 ], Users.prototype, "designation", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.user),
+    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.user, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
     __metadata("design:type", Array)
 ], Users.prototype, "questions", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "boolean" }),
     __metadata("design:type", Boolean)
 ], Users.prototype, "is_contactable", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "boolean", nullable: true, default: true }),
+    __metadata("design:type", Boolean)
+], Users.prototype, "active", void 0);
 Users = __decorate([
     (0, typeorm_1.Entity)("users")
 ], Users);

@@ -43,6 +43,6 @@ export default class Users extends Base {
   @Column({ type: "boolean" })
   is_contactable?: boolean;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", nullable: true, default: true })
   active: boolean;
 }

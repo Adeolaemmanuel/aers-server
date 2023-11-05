@@ -31,7 +31,10 @@ __decorate([
     __metadata("design:type", Object)
 ], Answers.prototype, "values", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.answer),
+    (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.answer, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
     __metadata("design:type", Array)
 ], Answers.prototype, "question", void 0);
 Answers = __decorate([

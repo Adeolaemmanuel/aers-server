@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllAnswers = exports.getAllQuestion = exports.updateQuestion = exports.insertAnswers = exports.getQuestionsBySlug = exports.createQuestion = void 0;
+exports.deleteQuestion = exports.getAllAnswers = exports.getAllQuestion = exports.updateQuestion = exports.insertAnswers = exports.getQuestionsBySlug = exports.createQuestion = void 0;
 const questions_entity_1 = __importDefault(require("../entities/questions.entity"));
 const stages_entity_1 = __importDefault(require("../../system/entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
@@ -117,18 +117,13 @@ exports.insertAnswers = insertAnswers;
 function updateQuestion(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = req.body;
-        console.log(payload);
         const question = yield questionRepo.findOne({ where: { id: payload.id } });
         console.log(question);
-        if (payload.input_type)
-            question.input_type = payload.input_type;
-        if (payload.question)
-            question.question = payload.question;
-        if (payload.stage_slug) {
-            question.stage = yield stagesRepo.findOne({
-                where: { slug: payload.stage_slug },
-            });
-        }
+        question.input_type = payload.input_type;
+        question.question = payload.question;
+        question.stage = yield stagesRepo.findOne({
+            where: { slug: payload.stage_slug },
+        });
         const updated = yield questionRepo.save(question);
         console.log(updated);
         baseController_1.BaseController.ok(res, {
@@ -153,4 +148,14 @@ function getAllAnswers(req, res) {
     });
 }
 exports.getAllAnswers = getAllAnswers;
+function deleteQuestion(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const deleteQuestion = yield questionRepo.findOne({
+            where: { id: req.body.id },
+        });
+        const deleted = yield questionRepo.remove(deleteQuestion);
+        baseController_1.BaseController.ok(res, { data: deleted, status: true });
+    });
+}
+exports.deleteQuestion = deleteQuestion;
 //# sourceMappingURL=v1.controller.js.map

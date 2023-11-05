@@ -7,7 +7,7 @@ const createQuestionValidator = (req, res, next) => {
     const payload = {
         input_type: undefined,
         question: undefined,
-        stage_id: undefined,
+        stage_slug: undefined,
     };
     const valid = (0, utils_1.customValidator)(payload, req);
     if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {

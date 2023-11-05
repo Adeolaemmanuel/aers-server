@@ -26,7 +26,10 @@ __decorate([
     __metadata("design:type", String)
 ], Stages.prototype, "slug", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.stage),
+    (0, typeorm_1.OneToMany)(() => questions_entity_1.default, (que) => que.stage, {
+        cascade: true,
+        onDelete: "CASCADE",
+    }),
     __metadata("design:type", questions_entity_1.default)
 ], Stages.prototype, "question", void 0);
 Stages = __decorate([
