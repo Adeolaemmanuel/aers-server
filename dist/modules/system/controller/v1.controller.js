@@ -134,7 +134,7 @@ function getSystemStats(req, res) {
             stats.designation = yield designationRepo.findAndCount()[1];
             baseController_1.BaseController.ok(res, {
                 data: stats,
-                message: "Stats fetched successfully",
+                message: "Dashboard fetched successfully",
                 status: true,
             });
         }

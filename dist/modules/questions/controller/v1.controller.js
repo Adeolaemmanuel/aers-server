@@ -66,7 +66,7 @@ function getQuestionsBySlug(req, res) {
             });
         }
         baseController_1.BaseController.ok(res, {
-            message: "Question created successfully",
+            message: "Question fetched successfully",
             status: true,
             data: resp,
         });

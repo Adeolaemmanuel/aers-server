@@ -58,7 +58,7 @@ export async function getQuestionsBySlug(req: Request, res: Response) {
   }
 
   BaseController.ok(res, {
-    message: "Question created successfully",
+    message: "Question fetched successfully",
     status: true,
     data: resp,
   });
