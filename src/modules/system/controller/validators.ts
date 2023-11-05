@@ -22,6 +22,44 @@ export const createStageValidator = (
   next();
 };
 
+export const updateStageValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const payload: Partial<createStageDto> = {
+    name: undefined,
+    slug: undefined,
+  };
+
+  const valid = customValidator(payload, req);
+
+  if (valid?.length > 0) {
+    return handleError(valid, res);
+  }
+
+  next();
+};
+
+export const updateDesignationValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const payload: Partial<createDesignationDto> = {
+    name: undefined,
+    slug: undefined,
+  };
+
+  const valid = customValidator(payload, req);
+
+  if (valid?.length > 0) {
+    return handleError(valid, res);
+  }
+
+  next();
+};
+
 export const createDesignationValidator = (
   req: Request,
   res: Response,

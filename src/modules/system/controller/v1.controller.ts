@@ -55,6 +55,32 @@ export async function deleteStage(req: Request, res: Response) {
   }
 }
 
+export async function updateStage(req: Request, res: Response) {
+  const payload = req.body as {
+    slug: string;
+    name: string;
+  };
+
+  try {
+    const stage = await stageRepo.findOne({ where: { slug: payload.slug } });
+
+    payload.slug = slugify(payload.name, { lower: true, trim: true });
+
+    stage.name = payload.name;
+    stage.slug = payload.slug;
+
+    const saved = await stageRepo.save(stage);
+
+    BaseController.ok(res, {
+      data: saved,
+      message: "Stage updated successfully",
+      status: true,
+    });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
+}
+
 export async function getAllStage(req: Request, res: Response) {
   try {
     const stages = await stageRepo.find({
@@ -116,6 +142,34 @@ export async function deleteDesignation(req: Request, res: Response) {
     BaseController.ok(res, {
       data: isDeleted,
       message: "Designation deleted successfully",
+      status: true,
+    });
+  } catch (error) {
+    BaseController.fail(res, error);
+  }
+}
+
+export async function updateDesignation(req: Request, res: Response) {
+  const payload = req.body as {
+    slug: string;
+    name: string;
+  };
+
+  try {
+    const designation = await designationRepo.findOne({
+      where: { slug: payload.slug },
+    });
+
+    payload.slug = slugify(payload.name, { lower: true, trim: true });
+
+    designation.name = payload.name;
+    designation.slug = payload.slug;
+
+    const saved = await designationRepo.save(designation);
+
+    BaseController.ok(res, {
+      data: saved,
+      message: "Designation updated successfully",
       status: true,
     });
   } catch (error) {
