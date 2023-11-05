@@ -19,7 +19,10 @@ export default class Questions extends Base {
   @ManyToOne(() => Stages, (sta) => sta.question, { onDelete: "NO ACTION" })
   stage?: Stages;
 
-  @OneToMany(() => Answers, (ans) => ans.question, { cascade: true })
+  @OneToMany(() => Answers, (ans) => ans.question, {
+    cascade: true,
+    onDelete: "NO ACTION",
+  })
   answer: Answers[];
 
   @ManyToOne(() => Users, (user) => user.questions, { onDelete: "NO ACTION" })
