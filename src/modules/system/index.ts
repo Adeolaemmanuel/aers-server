@@ -8,6 +8,7 @@ import {
   createStage,
   getAllDesignation,
   getAllStage,
+  getSystemStats,
 } from "./controller/v1.controller";
 
 const systemRouterV1 = express.Router();
@@ -24,6 +25,6 @@ systemRouterV1.post(
   createDesignation
 );
 
-systemRouterV1.get("/stats");
+systemRouterV1.get("/stats", getSystemStats);
 
 export default systemRouterV1;
