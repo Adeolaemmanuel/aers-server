@@ -43,6 +43,7 @@ export async function getAllStage(req: Request, res: Response) {
       relations: {
         question: true,
       },
+      order: { created_at: "DESC" },
     });
 
     if (!stages) {
@@ -88,7 +89,9 @@ export async function createDesignation(req: Request, res: Response) {
 
 export async function getAllDesignation(req: Request, res: Response) {
   try {
-    const designation = await designationRepo.find();
+    const designation = await designationRepo.find({
+      order: { created_at: "DESC" },
+    });
     if (!designation) {
       return BaseController.clientError(res, {
         message: "An error occurred while trying to get designation",
@@ -115,10 +118,10 @@ export async function getSystemStats(req: Request, res: Response) {
       designation: 0,
     };
 
-    stats.user = await userRepo.findAndCount()[1];
-    stats.questions = await question.findAndCount()[1];
-    stats.stages = await stageRepo.findAndCount()[1];
-    stats.designation = await designationRepo.findAndCount()[1];
+    stats.user = await userRepo.count();
+    stats.questions = await question.count();
+    stats.stages = await stageRepo.count();
+    stats.designation = await designationRepo.count();
 
     BaseController.ok(res, {
       data: stats,

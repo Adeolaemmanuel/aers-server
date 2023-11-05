@@ -38,6 +38,7 @@ __decorate([
 ], Questions.prototype, "stage", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => answers_entity_1.default, (ans) => ans.question, {
+        cascade: true,
         onDelete: "CASCADE",
     }),
     __metadata("design:type", Array)

@@ -5,10 +5,6 @@ import Users from "../../../modules/user/entities/user.entity";
 
 @Entity("answers")
 export default class Answers extends Base {
-  @Column({ type: "text" })
-  @Index()
-  user_id: string;
-
   @Column({ type: "text", nullable: true })
   value: string;
 

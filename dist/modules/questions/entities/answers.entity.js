@@ -19,11 +19,6 @@ const user_entity_1 = __importDefault(require("../../../modules/user/entities/us
 let Answers = class Answers extends base_entity_1.default {
 };
 __decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
-    (0, typeorm_1.Index)(),
-    __metadata("design:type", String)
-], Answers.prototype, "user_id", void 0);
-__decorate([
     (0, typeorm_1.Column)({ type: "text", nullable: true }),
     __metadata("design:type", String)
 ], Answers.prototype, "value", void 0);
@@ -33,14 +28,12 @@ __decorate([
 ], Answers.prototype, "values", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => questions_entity_1.default, (que) => que.answer, {
-        cascade: true,
         onDelete: "CASCADE",
     }),
     __metadata("design:type", Array)
 ], Answers.prototype, "question", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.default, (user) => user.answers, {
-        cascade: true,
         onDelete: "CASCADE",
     }),
     __metadata("design:type", Array)

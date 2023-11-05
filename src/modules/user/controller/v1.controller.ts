@@ -96,6 +96,7 @@ export async function getAllUsers(req: Request, res: Response) {
         designation: true,
         questions: true,
       },
+      order: { created_at: "DESC" },
     });
 
     BaseController.ok(res, { data: users, status: true });

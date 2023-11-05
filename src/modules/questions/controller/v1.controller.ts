@@ -44,7 +44,7 @@ export async function getQuestionsBySlug(req: Request, res: Response) {
 
   const resp = await questionRepo.find({
     where: { stage: { slug: slug } },
-    order: { id: "ASC" },
+    order: { created_at: "DESC" },
     relations: {
       stage: true,
     },
@@ -77,7 +77,7 @@ export async function insertAnswers(req: Request, res: Response) {
             where: { id: parseInt(key) },
           }),
           values: payload[key],
-          user_id: (await userRepo.findOne({ where: { email } })).user_id,
+          users: await userRepo.findOne({ where: { email } }),
         };
       } else {
         return {
@@ -85,13 +85,11 @@ export async function insertAnswers(req: Request, res: Response) {
             where: { id: parseInt(key) },
           }),
           value: payload[key],
-          user_id: (await userRepo.findOne({ where: { email } })).user_id,
+          users: await userRepo.findOne({ where: { email } }),
         };
       }
     })
   );
-
-  console.log(answers);
 
   const answer = await answerRepo.create(answers);
 

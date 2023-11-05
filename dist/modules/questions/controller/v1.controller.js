@@ -84,7 +84,7 @@ function insertAnswers(req, res) {
                         where: { id: parseInt(key) },
                     }),
                     values: payload[key],
-                    user_id: (yield userRepo.findOne({ where: { email } })).user_id,
+                    users: yield userRepo.findOne({ where: { email } }),
                 };
             }
             else {
@@ -93,7 +93,7 @@ function insertAnswers(req, res) {
                         where: { id: parseInt(key) },
                     }),
                     value: payload[key],
-                    user_id: (yield userRepo.findOne({ where: { email } })).user_id,
+                    users: yield userRepo.findOne({ where: { email } }),
                 };
             }
         })));
