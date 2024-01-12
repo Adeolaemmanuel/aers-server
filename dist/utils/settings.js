@@ -16,5 +16,5 @@ exports.DB_HOST = DB_HOST = DB_HOST || "localhost";
 exports.DB_USERNAME = DB_USERNAME = DB_USERNAME || "postgres";
 exports.DB_PASSWORD = DB_PASSWORD = DB_PASSWORD || "neutron@360";
 exports.DB_PORT = DB_PORT = DB_PORT || "5432";
-exports.PORT = PORT = PORT || "3000";
+exports.PORT = PORT = PORT || "4000";
 //# sourceMappingURL=settings.js.map

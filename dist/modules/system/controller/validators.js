@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUserValidator = exports.createDesignationValidator = exports.createStageValidator = void 0;
+exports.createUserValidator = exports.createDesignationValidator = exports.updateDesignationValidator = exports.updateStageValidator = exports.createStageValidator = void 0;
 const utils_1 = require("../../../utils/utils");
 const baseController_1 = require("../../../utils/baseController");
 const createStageValidator = (req, res, next) => {
@@ -14,6 +14,30 @@ const createStageValidator = (req, res, next) => {
     next();
 };
 exports.createStageValidator = createStageValidator;
+const updateStageValidator = (req, res, next) => {
+    const payload = {
+        name: undefined,
+        slug: undefined,
+    };
+    const valid = (0, utils_1.customValidator)(payload, req);
+    if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
+        return handleError(valid, res);
+    }
+    next();
+};
+exports.updateStageValidator = updateStageValidator;
+const updateDesignationValidator = (req, res, next) => {
+    const payload = {
+        name: undefined,
+        slug: undefined,
+    };
+    const valid = (0, utils_1.customValidator)(payload, req);
+    if ((valid === null || valid === void 0 ? void 0 : valid.length) > 0) {
+        return handleError(valid, res);
+    }
+    next();
+};
+exports.updateDesignationValidator = updateDesignationValidator;
 const createDesignationValidator = (req, res, next) => {
     const payload = {
         name: undefined,

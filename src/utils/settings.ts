@@ -15,7 +15,7 @@ DB_HOST = DB_HOST || "localhost";
 DB_USERNAME = DB_USERNAME || "postgres";
 DB_PASSWORD = DB_PASSWORD || "neutron@360";
 DB_PORT = DB_PORT || "5432";
-PORT = PORT || "3000";
+PORT = PORT || "4000";
 
 export {
   REFRESH_TOKEN_LENGTH,

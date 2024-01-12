@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSystemStats = exports.getAllDesignation = exports.deleteDesignation = exports.createDesignation = exports.getAllStage = exports.deleteStage = exports.createStage = void 0;
+exports.getSystemStats = exports.getAllDesignation = exports.updateDesignation = exports.deleteDesignation = exports.createDesignation = exports.getAllStage = exports.updateStage = exports.deleteStage = exports.createStage = void 0;
 const designation_entity_1 = __importDefault(require("../entities/designation.entity"));
 const stages_entity_1 = __importDefault(require("../entities/stages.entity"));
 const baseController_1 = require("../../../utils/baseController");
@@ -50,7 +50,7 @@ exports.createStage = createStage;
 function deleteStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const slug = req.body.name;
+            const slug = req.body.slug;
             const stage = yield stageRepo.findOne({ where: { slug } });
             const isDeleted = yield stageRepo.remove(stage);
             baseController_1.BaseController.ok(res, {
@@ -65,6 +65,27 @@ function deleteStage(req, res) {
     });
 }
 exports.deleteStage = deleteStage;
+function updateStage(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const payload = req.body;
+        try {
+            const stage = yield stageRepo.findOne({ where: { slug: payload.slug } });
+            payload.slug = (0, slugify_1.default)(payload.name, { lower: true, trim: true });
+            stage.name = payload.name;
+            stage.slug = payload.slug;
+            const saved = yield stageRepo.save(stage);
+            baseController_1.BaseController.ok(res, {
+                data: saved,
+                message: "Stage updated successfully",
+                status: true,
+            });
+        }
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
+    });
+}
+exports.updateStage = updateStage;
 function getAllStage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -119,7 +140,7 @@ exports.createDesignation = createDesignation;
 function deleteDesignation(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const slug = req.body.name;
+            const slug = req.body.slug;
             const designation = yield designationRepo.findOne({ where: { slug } });
             const isDeleted = yield designationRepo.remove(designation);
             baseController_1.BaseController.ok(res, {
@@ -134,6 +155,29 @@ function deleteDesignation(req, res) {
     });
 }
 exports.deleteDesignation = deleteDesignation;
+function updateDesignation(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const payload = req.body;
+        try {
+            const designation = yield designationRepo.findOne({
+                where: { slug: payload.slug },
+            });
+            payload.slug = (0, slugify_1.default)(payload.name, { lower: true, trim: true });
+            designation.name = payload.name;
+            designation.slug = payload.slug;
+            const saved = yield designationRepo.save(designation);
+            baseController_1.BaseController.ok(res, {
+                data: saved,
+                message: "Designation updated successfully",
+                status: true,
+            });
+        }
+        catch (error) {
+            baseController_1.BaseController.fail(res, error);
+        }
+    });
+}
+exports.updateDesignation = updateDesignation;
 function getAllDesignation(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
