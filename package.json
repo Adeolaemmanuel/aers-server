@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "start": "pnpm i && pnpm run && tsc && pnpm m:run && cd ./dist/api && node index.js",
+    "start": "pnpm i && pnpm run && tsc && pnpm m:run && cd ./dist/api",
     "typeorm": "typeorm-ts-node-commonjs",
     "m:gen": "pnpm run typeorm migration:generate -d src/db/db.ts -t=false",
     "m:run": "pnpm run typeorm migration:run -d src/db/db.ts",
