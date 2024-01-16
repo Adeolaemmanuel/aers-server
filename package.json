@@ -7,10 +7,10 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "start": "tsc && cd ./dist && vercel dev",
+    "start": "yarn && tsc && yarn m:run && cd ./dist",
     "typeorm": "typeorm-ts-node-commonjs",
-    "m:gen": "pnpm run typeorm migration:generate -d src/db/db.ts -t=false",
-    "m:run": "pnpm run typeorm migration:run -d src/db/db.ts",
+    "m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
+    "m:run": "yarn typeorm migration:run -d src/db/db.ts",
     "m:create": "typeorm migration:create src/db/migrations/"
   },
   "dependencies": {
@@ -22,8 +22,7 @@
     "reflect-metadata": "^0.1.13",
     "slugify": "^1.6.6",
     "ts-node": "^10.9.1",
-    "typeorm": "0.3.17",
-    "vercel": "^33.1.0"
+    "typeorm": "0.3.17"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",
@@ -32,3 +31,4 @@
     "typescript": "4.5.2"
   }
 }
+
