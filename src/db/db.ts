@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import { BaseEntity, DataSource } from "typeorm";
 import {
   DB_HOST,
   DB_NAME,
@@ -24,6 +24,6 @@ export const dataSource = new DataSource({
   url: DB_URL,
   synchronize: false,
   logger: "debug",
-  entities: [Stages, Designation, Users, Questions, Answers],
+  entities: [Stages, Designation, Users, Questions, Answers, BaseEntity],
   migrations: [__dirname + "/migrations/*{.ts,.js}"],
 });
