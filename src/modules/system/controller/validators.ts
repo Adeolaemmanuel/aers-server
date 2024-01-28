@@ -29,7 +29,6 @@ export const updateStageValidator = (
 ) => {
   const payload: Partial<createStageDto> = {
     name: undefined,
-    slug: undefined,
   };
 
   const valid = customValidator(payload, req);
