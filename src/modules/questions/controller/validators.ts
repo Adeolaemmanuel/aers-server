@@ -1,30 +1,22 @@
 import { NextFunction, Request, Response } from "express";
-import { BaseController } from "../../../utils/baseController";
-import { customValidator } from "../../../utils/utils";
+import { customValidator, handleError } from "../../../utils/utils";
 
 export const createQuestionValidator = (
-  req: Request,
-  res: Response,
-  next: NextFunction
+	req: Request,
+	res: Response,
+	next: NextFunction
 ) => {
-  const payload: Partial<QuestionsDto> = {
-    input_type: undefined,
-    question: undefined,
-    stage_slug: undefined,
-  };
+	const payload: Partial<QuestionsDto> = {
+		input_type: undefined,
+		question: undefined,
+		stage_slug: undefined,
+	};
 
-  const valid = customValidator(payload, req);
+	const valid = customValidator(payload, req);
 
-  if (valid?.length > 0) {
-    return handleError(valid, res);
-  }
+	if (valid?.length > 0) {
+		return handleError(valid, res);
+	}
 
-  next();
+	next();
 };
-
-function handleError(valid: string, res: Response) {
-  return BaseController.clientError(res, {
-    error: `${valid.replace("_", " ")} is required`,
-    key: valid,
-  });
-}

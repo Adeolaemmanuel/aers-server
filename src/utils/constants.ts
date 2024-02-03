@@ -8,7 +8,7 @@ export enum STAGES {
 	REPORTER = "reporter",
 }
 
-export enum USER_TYPES {
-	USER = "user",
+export enum ADMIN_TYPES {
 	SUPER_ADMIN = "super_admin",
+	ADMIN = "admin",
 }

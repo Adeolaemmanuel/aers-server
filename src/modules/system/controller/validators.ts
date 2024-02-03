@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { customValidator } from "../../../utils/utils";
+import { customValidator, handleError } from "../../../utils/utils";
 import { createStageDto } from "../dto/stage.dto";
 import { createDesignationDto } from "../dto/designation.dto";
 import { BaseController } from "../../../utils/baseController";
@@ -29,6 +29,7 @@ export const updateStageValidator = (
 ) => {
   const payload: Partial<createStageDto> = {
     name: undefined,
+    slug: undefined,
   };
 
   const valid = customValidator(payload, req);
@@ -98,10 +99,3 @@ export const createUserValidator = (
 
   next();
 };
-
-function handleError(valid: string, res: Response) {
-  return BaseController.clientError(res, {
-    error: `${valid.replace("_", " ")} is required`,
-    key: valid,
-  });
-}

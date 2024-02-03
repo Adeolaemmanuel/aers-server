@@ -4,6 +4,7 @@ import jsn from "jsonwebtoken";
 import AdminUser from "modules/admin/entities/admin.entity";
 import Users from "modules/user/entities/user.entity";
 import { BaseController } from "./baseController";
+import { ADMIN_TYPES } from "./constants";
 
 export const customValidator = (payload: any, req: Request) => {
 	const data = { ...payload, ...req.body };
@@ -17,9 +18,16 @@ export const customValidator = (payload: any, req: Request) => {
 	})[0];
 };
 
+export function handleError(valid: string, res: Response) {
+	return BaseController.clientError(res, {
+		error: `${valid.replace("_", " ")} is required`,
+		key: valid,
+	});
+}
+
 export const authenticate = async (
 	user: AdminUser | Users,
-	type: "user" | "admin",
+	type: ADMIN_TYPES,
 	key: string
 ) => {
 	switch (type) {

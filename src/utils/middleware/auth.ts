@@ -1,5 +1,7 @@
+import { IRequest } from "@types";
 import { NextFunction, Request, Response } from "express";
 import jsn from "jsonwebtoken";
+import AdminUsers from "modules/admin/entities/admin.entity";
 import { BaseController } from "utils/baseController";
 
 const tokenExist = (req: Request) => {
@@ -19,7 +21,7 @@ const tokenExist = (req: Request) => {
 };
 
 export async function authMiddleWare(
-	req: Request,
+	req: IRequest,
 	res: Response,
 	next: NextFunction
 ) {
@@ -29,7 +31,17 @@ export async function authMiddleWare(
 		return BaseController.unauthorized(res, { ...token });
 	}
 
-	const user = jsn.verify(token.data as string, "");
+	jsn.verify(token.data as string, "shhhhh", async function (err, data) {
+		if (err) {
+			BaseController.clientError(res, { ...err, status: false });
+		} else {
+			const decoded: any = data;
+			const user = await AdminUsers.findOne({
+				where: { email: decoded.email },
+			});
 
-	console.log(user);
+			req.admin = user;
+			next();
+		}
+	});
 }
