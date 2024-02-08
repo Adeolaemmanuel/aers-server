@@ -1,4 +1,4 @@
-import { IRequest } from "@types/request";
+import { IRequest } from "utils/request";
 import { NextFunction, Request, Response } from "express";
 import AdminUsers from "modules/admin/entities/admin.entity";
 import { BaseController } from "utils/baseController";
