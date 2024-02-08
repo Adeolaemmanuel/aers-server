@@ -11,8 +11,7 @@
 		"typeorm": "typeorm-ts-node-commonjs",
 		"m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
 		"m:run": "yarn typeorm migration:run -d src/db/db.ts",
-		"m:create": "typeorm migration:create src/db/migrations/",
-		"vercel-build": "vercel dev && yarn && tsc && yarn m:run && cd ./dist && node api/index.js"
+		"m:create": "typeorm migration:create src/db/migrations/"
 	},
 	"dependencies": {
 		"@types/bcrypt": "^5.0.2",
