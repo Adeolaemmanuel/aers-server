@@ -7,7 +7,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "nodemon",
-		"start": "vercel dev",
+		"start": "vercel dev && yarn m:run",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
 		"m:run": "yarn typeorm migration:run -d src/db/db.ts",
