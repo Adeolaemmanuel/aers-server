@@ -1,6 +1,6 @@
-import Base from "db/config/base.entity";
+import Base from "../../../db/config/base.entity";
 import { Column, Entity, Generated, Index } from "typeorm";
-import { ADMIN_TYPES } from "utils/constants";
+import { ADMIN_TYPES } from "../../../utils/constants";
 
 @Entity("admin_user")
 export default class AdminUsers extends Base {
@@ -26,6 +26,11 @@ export default class AdminUsers extends Base {
 	@Column({ type: "text" })
 	password?: string;
 
-	@Column({ type: "enum", default: ADMIN_TYPES.ADMIN })
+	@Column({
+		type: "enum",
+		default: ADMIN_TYPES.ADMIN,
+		enum: ADMIN_TYPES,
+		name: "user_type",
+	})
 	user_type: ADMIN_TYPES;
 }

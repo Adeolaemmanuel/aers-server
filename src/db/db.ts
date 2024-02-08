@@ -12,6 +12,7 @@ import Designation from "../modules/system/entities/designation.entity";
 import Users from "../modules/user/entities/user.entity";
 import Questions from "../modules/questions/entities/questions.entity";
 import Answers from "../modules/questions/entities/answers.entity";
+import AdminUsers from "../modules/admin/entities/admin.entity";
 
 export const dataSource = new DataSource({
 	type: "postgres",
@@ -24,6 +25,6 @@ export const dataSource = new DataSource({
 	url: DB_URL,
 	synchronize: false,
 	logger: "debug",
-	entities: [Stages, Designation, Users, Questions, Answers],
+	entities: [Stages, Designation, Users, Questions, Answers, AdminUsers],
 	migrations: [__dirname + "/migrations/*{.ts,.js}"],
 });
