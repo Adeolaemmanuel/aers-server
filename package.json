@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "start": "yarn && tsc && yarn m:run && cd ./dist && node api/index.js",
+    "start": "vercel dev",
     "typeorm": "typeorm-ts-node-commonjs",
     "m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
     "m:run": "yarn typeorm migration:run -d src/db/db.ts",
@@ -22,7 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "slugify": "^1.6.6",

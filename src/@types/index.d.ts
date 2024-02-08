@@ -1,8 +1,9 @@
-import { Request } from "express";
-import AdminUsers from "modules/admin/entities/admin.entity";
-import Users from "modules/user/entities/user.entity";
+import { ADMIN_TYPES } from "utils/constants";
 
-interface IRequest extends Request {
-	user: Users;
-	admin: AdminUsers;
-}
+type GenerateAuthToken = {
+	email: string;
+	user_id: string;
+	admin_type: ADMIN_TYPES;
+	phone_number: string;
+	password: string
+};

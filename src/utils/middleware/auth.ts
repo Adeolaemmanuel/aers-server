@@ -1,8 +1,8 @@
-import { IRequest } from "@types";
+import { IRequest } from "@types/IRequest";
 import { NextFunction, Request, Response } from "express";
-import jsn from "jsonwebtoken";
 import AdminUsers from "modules/admin/entities/admin.entity";
 import { BaseController } from "utils/baseController";
+import { decrypt, isTokenExpired } from "utils/utils";
 
 const tokenExist = (req: Request) => {
 	const token = req.headers.authorization || req.headers.Authorization;
@@ -31,17 +31,38 @@ export async function authMiddleWare(
 		return BaseController.unauthorized(res, { ...token });
 	}
 
-	jsn.verify(token.data as string, "shhhhh", async function (err, data) {
-		if (err) {
-			BaseController.clientError(res, { ...err, status: false });
-		} else {
-			const decoded: any = data;
-			const user = await AdminUsers.findOne({
-				where: { email: decoded.email },
-			});
+	const expired = isTokenExpired(token.data as string);
 
-			req.admin = user;
-			next();
+	if (expired) {
+		return BaseController.clientError(res, {
+			error: "",
+			message: "Token expired",
+			status: false,
+		});
+	}
+
+	const { user_id, email } = decrypt(token.data as string);
+
+	if (!user_id) {
+		return BaseController.clientError(res, {
+			error: "",
+			message: "Invalid token data",
+			status: false,
+		});
+	} else {
+		const user = await AdminUsers.findOne({
+			where: { user_id, email },
+		});
+
+		if (!user) {
+			return BaseController.clientError(res, {
+				error: "",
+				message: "User does not exist",
+				status: false,
+			});
 		}
-	});
+
+		req.admin = user;
+		next();
+	}
 }

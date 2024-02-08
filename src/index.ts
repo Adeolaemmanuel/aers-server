@@ -17,7 +17,7 @@ app.use(cors());
 app.get("/api", (req, res) => {
 	res.setHeader("Content-Type", "text/html");
 	res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-	res.end(`Hello! aers server running 🚀`);
+	res.end(`Hello! aers server running ${v4()}`);
 });
 
 app.use("/api/v1/users", userRouterV1);
