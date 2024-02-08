@@ -8,17 +8,6 @@ import systemRouterV1 from "./modules/system";
 import questionV1 from "./modules/questions";
 import { v4 } from "uuid";
 
-dataSource
-	.initialize()
-	.then((db) => {
-		if (db.isInitialized) {
-			console.log(`Connected to the database 🚀`);
-		}
-	})
-	.catch(() => {
-		console.log(`Error connecting to database 🚫`);
-	});
-
 const app = express();
 const port = parseInt(PORT!) || 4000;
 
@@ -36,5 +25,13 @@ app.use("/api/v1/system", systemRouterV1);
 app.use("/api/v1/questions", questionV1);
 
 app.listen(port, async () => {
-	console.log(`Server running on http://localhost:${port} 🚀`);
+	const db = await dataSource.initialize();
+	if (db.isInitialized) {
+		console.log(`Connected to the database 🚀`);
+		console.log(`Server running on http://localhost:${port} 🚀`);
+	} else {
+		console.log(`Error connecting to database 🚫`);
+	}
 });
+
+export default app;
