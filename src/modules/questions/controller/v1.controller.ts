@@ -5,6 +5,7 @@ import { BaseController } from "../../../utils/baseController";
 import Answers from "../entities/answers.entity";
 import Users from "../../user/entities/user.entity";
 import { IRequest } from "utils/request";
+import { FindOptionsOrderValue } from "typeorm";
 
 const questionRepo = Questions;
 const stagesRepo = Stages;
@@ -41,10 +42,13 @@ export async function createQuestion(req: Request, res: Response) {
 
 export async function getQuestionsBySlug(req: Request, res: Response) {
 	const slug = req.params.slug as string;
+	let sort = req.query.sort as FindOptionsOrderValue;
+
+	sort = sort || "DESC";
 
 	const resp = await questionRepo.find({
 		where: { stage: { slug: slug } },
-		order: { created_at: "ASC" },
+		order: { created_at: sort },
 		relations: {
 			stage: true,
 		},
@@ -145,8 +149,13 @@ export async function getAllQuestion(req: Request, res: Response) {
 }
 
 export async function getAllAnswers(req: Request, res: Response) {
+	let sort = req.query.sort as FindOptionsOrderValue;
+
+	sort = sort || "DESC";
+
 	const answers = await answerRepo.findAndCount({
 		relations: { question: true, user: true },
+		order: { created_at: sort },
 	});
 	console.log(answers);
 
