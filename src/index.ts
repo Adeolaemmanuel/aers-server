@@ -14,7 +14,7 @@ const port = parseInt(PORT!) || 4000;
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/v1/docs", (req, res) => {
+app.get("/", (req, res) => {
 	res.setHeader("Content-Type", "text/html");
 	res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
 	res.end(`Hello! aers server running ${v4()}`);

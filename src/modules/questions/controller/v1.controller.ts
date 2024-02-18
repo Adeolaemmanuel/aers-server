@@ -157,7 +157,6 @@ export async function getAllAnswers(req: Request, res: Response) {
 		relations: { question: true, user: true },
 		order: { created_at: sort },
 	});
-	console.log(answers);
 
 	BaseController.ok(res, {
 		data: answers,
