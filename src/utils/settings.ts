@@ -18,7 +18,7 @@ DB_PORT = DB_PORT || "5432";
 PORT = PORT || "3000";
 DB_URL =
 	DB_URL ||
-	"postgresql://olamidejummy2606:L3up9viGlQIU@ep-winter-term-a522wqpe.us-east-2.aws.neon.tech/ares-db?sslmode=require";
+	"postgresql://Adeolaemmanuel:BF6RYNdW0mLH@ep-winter-bar-a51aww8t-pooler.us-east-2.aws.neon.tech/ears_db_dev?sslmode=require";
 
 export {
 	REFRESH_TOKEN_LENGTH,

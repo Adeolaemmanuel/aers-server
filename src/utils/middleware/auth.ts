@@ -1,8 +1,9 @@
 import { IRequest } from "utils/request";
 import { NextFunction, Request, Response } from "express";
-import AdminUsers from "modules/admin/entities/admin.entity";
-import { BaseController } from "utils/baseController";
-import { decrypt, isTokenExpired } from "utils/utils";
+import AdminUsers from "../../modules/admin/entities/admin.entity";
+import { BaseController } from "../baseController";
+import { decrypt, isTokenExpired } from "../utils";
+import Users from "../../modules/user/entities/user.entity";
 
 const tokenExist = (req: Request) => {
 	const token = req.headers.authorization || req.headers.Authorization;
@@ -20,7 +21,7 @@ const tokenExist = (req: Request) => {
 	};
 };
 
-export async function authMiddleWare(
+export async function adminAuthMiddleWare(
 	req: IRequest,
 	res: Response,
 	next: NextFunction
@@ -65,4 +66,31 @@ export async function authMiddleWare(
 		req.admin = user;
 		next();
 	}
+}
+
+export async function usersAuthMiddleWare(
+	req: IRequest,
+	res: Response,
+	next: NextFunction
+) {
+	const token = tokenExist(req);
+
+	if (!token.status) {
+		return BaseController.unauthorized(res, { ...token });
+	}
+
+	const user = await Users.findOne({
+		where: { email: token.data as string },
+	});
+
+	if (!user) {
+		return BaseController.clientError(res, {
+			error: "",
+			message: "User does not exist",
+			status: false,
+		});
+	}
+
+	req.user = user;
+	next();
 }

@@ -87,7 +87,7 @@ export async function getAllStage(req: Request, res: Response) {
       relations: {
         question: true,
       },
-      order: { created_at: "DESC" },
+      order: { created_at: "ASC" },
     });
 
     if (!stages) {

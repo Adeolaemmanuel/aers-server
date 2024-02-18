@@ -1,20 +1,21 @@
 import express from "express";
 import {
-  createQuestion,
-  deleteQuestion,
-  getAllAnswers,
-  getAllQuestion,
-  getQuestionsBySlug,
-  insertAnswers,
-  updateQuestion,
+	createQuestion,
+	deleteQuestion,
+	getAllAnswers,
+	getAllQuestion,
+	getQuestionsBySlug,
+	insertAnswers,
+	updateQuestion,
 } from "./controller/v1.controller";
 import { createQuestionValidator } from "./controller/validators";
+import { usersAuthMiddleWare } from "../../utils/middleware/auth";
 
 const questionV1 = express.Router();
 
 questionV1.get("/answers", getAllAnswers);
 
-questionV1.post("/answer", insertAnswers);
+questionV1.post("/answer", usersAuthMiddleWare, insertAnswers);
 
 questionV1.post("/", createQuestionValidator, createQuestion);
 

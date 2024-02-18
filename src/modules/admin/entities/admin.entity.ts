@@ -4,12 +4,12 @@ import { ADMIN_TYPES } from "../../../utils/constants";
 
 @Entity("admin_user")
 export default class AdminUsers extends Base {
-	@Index("user_id")
+	@Index("admin_user_id")
 	@Column({ type: "uuid", unique: true })
 	@Generated("uuid")
 	user_id?: string;
 
-	@Index("email")
+	@Index("admin_email")
 	@Column({ type: "text", unique: true })
 	email?: string;
 
@@ -19,7 +19,7 @@ export default class AdminUsers extends Base {
 	@Column({ type: "text" })
 	first_name?: string;
 
-	@Index("phone_number")
+	@Index("admin_phone_number")
 	@Column({ type: "text", unique: true })
 	phone_number?: string;
 
