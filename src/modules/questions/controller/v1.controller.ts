@@ -75,7 +75,7 @@ export async function insertAnswers(req: IRequest, res: Response) {
 						where: { id: parseInt(key) },
 					}),
 					values: payload[key],
-					users: req.user,
+					user: req.user,
 				};
 			} else {
 				return {
@@ -83,7 +83,7 @@ export async function insertAnswers(req: IRequest, res: Response) {
 						where: { id: parseInt(key) },
 					}),
 					value: payload[key],
-					users: req.user,
+					user: req.user,
 				};
 			}
 		})

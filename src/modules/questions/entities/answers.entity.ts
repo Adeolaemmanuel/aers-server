@@ -19,5 +19,5 @@ export default class Answers extends Base {
   @ManyToOne(() => Users, (user) => user.answers, {
     onDelete: "CASCADE",
   })
-  user: Users[];
+  user: Users;
 }
