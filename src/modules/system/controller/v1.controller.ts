@@ -85,7 +85,7 @@ export async function updateStage(req: Request, res: Response) {
 export async function getAllStage(req: Request, res: Response) {
 	let sort = req.query.sort as FindOptionsOrderValue;
 
-	sort = sort || "DESC";
+	sort = sort || "ASC";
 
 	try {
 		const stages = await stageRepo.find({
