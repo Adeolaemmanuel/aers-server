@@ -8,8 +8,13 @@ let {
 	DB_PASSWORD,
 	DB_URL,
 	PORT,
+	ADMIN_EMAIL,
+	ADMIN_PASSWORD,
 } = process.env;
 
+DB_NAME = DB_NAME || "postgres";
+ADMIN_EMAIL = ADMIN_EMAIL || "olamidejummy2606@gmail.com";
+ADMIN_PASSWORD = ADMIN_PASSWORD || "MYP.HD..";
 DB_NAME = DB_NAME || "postgres";
 DB_HOST = DB_HOST || "localhost";
 DB_USERNAME = DB_USERNAME || "postgres";
@@ -30,4 +35,6 @@ export {
 	DB_PASSWORD,
 	DB_URL,
 	PORT,
+	ADMIN_EMAIL,
+	ADMIN_PASSWORD,
 };

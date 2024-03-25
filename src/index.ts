@@ -7,6 +7,7 @@ import { PORT } from "./utils/settings";
 import systemRouterV1 from "./modules/system";
 import questionV1 from "./modules/questions";
 import { v4 } from "uuid";
+import adminRouterV1 from "modules/admin";
 
 const app = express();
 const port = parseInt(PORT!) || 4000;
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/users", userRouterV1);
+app.use("/api/v1/admin", adminRouterV1);
 app.use("/api/v1/system", systemRouterV1);
 app.use("/api/v1/questions", questionV1);
 
