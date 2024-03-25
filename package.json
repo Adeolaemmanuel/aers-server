@@ -1,17 +1,18 @@
 {
 	"name": "aers-server",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "index.ts",
 	"license": "MIT",
 	"author": "Emmanuel Adeola",
 	"private": true,
 	"scripts": {
 		"dev": "nodemon",
-		"start": "yarn && tsc && yarn m:run && cd ./dist && node api/index.js",
+		"start": "tsx ./api/index.ts",
 		"typeorm": "typeorm-ts-node-commonjs",
 		"m:gen": "yarn typeorm migration:generate -d src/db/db.ts -t=false",
 		"m:run": "yarn typeorm migration:run -d src/db/db.ts",
-		"m:create": "typeorm migration:create src/db/migrations/"
+		"m:create": "typeorm migration:create src/db/migrations/",
+		"poststart": "yarn m:run"
 	},
 	"dependencies": {
 		"@types/bcrypt": "^5.0.2",
@@ -26,8 +27,9 @@
 		"pg": "^8.4.0",
 		"reflect-metadata": "^0.1.13",
 		"slugify": "^1.6.6",
-		"ts-node": "^10.9.1",
-    "typeorm": "^0.3.20",
+		"ts-node": "^10.9.2",
+		"tsx": "^4.7.1",
+		"typeorm": "^0.3.20",
 		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
